@@ -1,5 +1,9 @@
 .env
 .env.local
 node_modules/
+.next/
 knowledge/processed/
+knowledge/raw/
 exports/
+tsconfig.tsbuildinfo
+tsconfig.typecheck.tsbuildinfo
