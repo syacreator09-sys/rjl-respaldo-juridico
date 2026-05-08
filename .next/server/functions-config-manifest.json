@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "functions": {
+    "/api/analyze-case": {},
+    "/api/evidence": {},
+    "/api/webhooks/stripe": {}
+  }
+}

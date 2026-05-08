@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJL - Respaldo Jurídico Laboral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1628;
+            --navy-mid: #111E35;
+            --navy-card: #172240;
+            --navy-light: #1E2E50;
+            --gold: #C8A84B;
+            --gold-light: #E5C97A;
+            --gold-dim: #7A6030;
+            --cream: #F2EDE0;
+            --text-dim: #6B7F9E;
+            --text-mid: #9BAFC8;
+            --r: 12px;
+            --r-lg: 18px;
+            --green: #4CAF50;
+            --red: #E07070;
+            --purple: #9C27B0;
+            --blue: #2196F3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--navy);
+            color: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            background: var(--navy-mid);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(200,168,75,0.2);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .seal {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--navy);
+            border: 2px solid var(--gold-light);
+            flex-shrink: 0;
+        }
+
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold-light);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .role-pill {
+            background: var(--navy-light);
+            border: 1px solid var(--gold-dim);
+            color: var(--gold-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .role-pill:hover {
+            background: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        /* ============ TABS ============ */
+        .tab-bar {
+            display: flex;
+            background: var(--navy-mid);
+            border-bottom: 1px solid rgba(200,168,75,0.15);
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: var(--gold-light);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab:hover {
+            color: var(--gold);
+            background: rgba(200,168,75,0.05);
+        }
+
+        /* ============ MAIN ============ */
+        .main {
+            padding: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* ============ CARDS ============ */
+        .card {
+            background: var(--navy-card);
+            border-radius: var(--r-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(200,168,75,0.1);
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .card-subtitle {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        /* ============ HERO (Vista Público) ============ */
+        .hero-seal {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 12px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--navy);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--cream);
+        }
+
+        .hero-subtitle {
+            text-align: center;
+            color: var(--text-mid);
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .disclaimer {
+            text-align: center;
+            color: var(--gold);
+            font-size: 12px;
+            background: rgba(200,168,75,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* ============ CHAT ============ */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 50vh;
+            min-height: 350px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-messages.client-chat {
+            max-height: 280px;
+        }
+
+        .message {
+            display: flex;
+            gap: 8px;
+            animation: fadeUp 0.3s ease;
+            max-width: 85%;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            object-fit: cover;
+        }
+
+        .avatar.bot {
+            background: var(--gold-dim);
+            color: var(--navy);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+        }
+
+        .avatar.user {
+            background: var(--navy-light);
+            border: 1px solid var(--gold);
+        }
+
+        .avatar-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .bubble {
+            background: var(--navy-card);
+            padding: 10px 14px;
+            border-radius: 14px 14px 14px 3px;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid rgba(200,168,75,0.1);
+        }
+
+        .message.user .bubble {
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 14px 14px 3px 14px;
+            border: none;
+        }
+
+        .bubble strong {
+            color: var(--gold-light);
+        }
+
+        .message.user .bubble strong {
+            color: var(--navy);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 4px 0;
+        }
+
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+        }
+
+        /* ============ CHAT INPUT ============ */
+        .chat-input-area {
+            display: flex;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(200,168,75,0.15);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.2);
+            color: var(--cream);
+            padding: 10px 14px;
+            border-radius: var(--r);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            resize: none;
+            min-height: 44px;
+            max-height: 120px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--gold);
+        }
+
+        .send-btn {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 10px 16px;
+            border-radius: var(--r);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .send-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ============ SPINNER ============ */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(200,168,75,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============ TOAST ============ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--navy-card);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 13px;
+            z-index: 999;
+            opacity: 0;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============ MODAL ============ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            display: flex;
+            align-items: flex-end;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-sheet {
+            background: var(--navy-mid);
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.show .modal-sheet {
+            transform: translateY(0);
+        }
+
+        .modal-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--text-dim);
+            border-radius: 2px;
+            margin: 0 auto 16px;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+
+        .modal-subtitle {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .modal-option {
+            width: 100%;
+            padding: 14px;
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.15);
+            border-radius: var(--r);
+            color: var(--cream);
+            cursor: pointer;
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-option:hover {
+            border-color: var(--gold);
+            background: rgba(200,168,75,0.1);
+        }
+
+        .modal-cancel {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* ============ CHIPS ============ */
+        .chips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .chip {
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.1);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .chip-label {
+            color: var(--text-dim);
+            font-size: 11px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .chip-value {
+            color: var(--cream);
+            font-weight: 500;
+        }
+
+        .chip-value.red {
+            color: var(--red);
+        }
+
+        /* ============ EVIDENCE BUTTONS ============ */
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .evidence-btn {
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.1);
+            padding: 15px;
+            border-radius: var(--r-lg);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .evidence-btn:hover {
+            border-color: var(--gold);
+            background: rgba(200,168,75,0.08);
+        }
+
+        .evidence-btn.has-files {
+            border-color: rgba(200,168,75,0.4);
+            background: rgba(200,168,75,0.05);
+        }
+
+        .evidence-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .evidence-label {
+            display: block;
+            font-weight: 600;
+            color: var(--cream);
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        .evidence-subtext {
+            color: var(--text-dim);
+            font-size: 11px;
+        }
+
+        .evidence-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .icon-green { background: rgba(76,175,80,0.2); color: #4CAF50; }
+        .icon-red { background: rgba(224,112,112,0.2); color: #E07070; }
+        .icon-gold { background: rgba(200,168,75,0.2); color: #C8A84B; }
+        .icon-blue { background: rgba(33,150,243,0.2); color: #2196F3; }
+        .icon-purple { background: rgba(156,39,176,0.2); color: #9C27B0; }
+        .icon-gray { background: rgba(107,127,158,0.2); color: #6B7F9E; }
+
+        /* ============ STAT CARDS ============ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat-card {
+            background: var(--navy-card);
+            padding: 16px;
+            border-radius: var(--r);
+            text-align: center;
+            border: 1px solid rgba(200,168,75,0.1);
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--r);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-weight: 500;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: rgba(200,168,75,0.1);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 8px;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* ============ TICKETS ============ */
+        .ticket {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--navy-light);
+            border-radius: var(--r);
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ticket:hover {
+            background: rgba(200,168,75,0.05);
+        }
+
+        .ticket-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ticket-dot.green { background: #4CAF50; }
+        .ticket-dot.gold { background: #C8A84B; }
+        .ticket-dot.gray { background: #6B7F9E; }
+
+        .ticket-info {
+            flex: 1;
+        }
+
+        .ticket-info strong {
+            display: block;
+            font-size: 14px;
+            color: var(--cream);
+        }
+
+        .ticket-info span {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        /* ============ PROYECCIÓN ============ */
+        .proj-chip {
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.1);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .proj-chip.special {
+            border: 1px solid var(--gold);
+            background: rgba(200,168,75,0.1);
+        }
+
+        .proj-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .proj-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        /* ============ ANALYSIS BOX ============ */
+        .analysis-box {
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.2);
+            border-radius: var(--r);
+            padding: 16px;
+            margin-top: 12px;
+            min-height: 80px;
+            color: var(--text-dim);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .analysis-box strong {
+            color: var(--gold-light);
+        }
+
+        .analysis-header {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        /* ============ UPSEL ============ */
+        .upsell-box {
+            background: var(--navy-card);
+            border: 2px solid var(--gold);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .upsell-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold-light);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .upsell-box ul {
+            list-style: none;
+            text-align: left;
+            margin: 16px 0;
+        }
+
+        .upsell-box ul li {
+            padding: 6px 0;
+            font-size: 13px;
+            color: var(--cream);
+        }
+
+        /* ============ FORM INPUTS ============ */
+        .form-input {
+            width: 100%;
+            background: var(--navy-light);
+            border: 1px solid rgba(200,168,75,0.2);
+            color: var(--cream);
+            padding: 10px 14px;
+            border-radius: var(--r);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold);
+        }
+
+        /* ============ FOTO AVATAR AREA ============ */
+        .photo-upload-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .photo-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--navy-light);
+            border: 2px dashed var(--gold-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .photo-circle:hover {
+            border-color: var(--gold);
+            background: rgba(200,168,75,0.1);
+        }
+
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .photo-circle .placeholder {
+            font-size: 32px;
+            color: var(--text-dim);
+        }
+
+        .photo-info {
+            flex: 1;
+        }
+
+        .photo-info strong {
+            display: block;
+            color: var(--cream);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .photo-info span {
+            color: var(--text-dim);
+            font-size: 12px;
+        }
+
+        .btn-xs {
+            padding: 4px 10px;
+            font-size: 11px;
+            border-radius: 6px;
+            background: var(--navy-light);
+            border: 1px solid var(--text-dim);
+            color: var(--text-mid);
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .btn-xs:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        /* ============ SCROLLBAR ============ */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--navy-light);
+            border-radius: 2px;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 600px) {
+            .chips-grid, .evidence-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 10px 12px;
+            }
+
+            .logo-text h1 {
+                font-size: 15px;
+            }
+
+            .tab {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+
+            .card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header">
+        <div class="logo-area">
+            <div class="seal">RJL</div>
+            <div class="logo-text">
+                <h1>Respaldo Jurídico Laboral</h1>
+                <span>Certeza Jurídica en la Palma de su Mano</span>
+            </div>
+        </div>
+        <div class="role-pill" onclick="cycleRole()" id="rolePill">Sin sesión</div>
+    </header>
+
+    <!-- ==================== TAB BAR ==================== -->
+    <div class="tab-bar">
+        <button class="tab active" onclick="switchView(0)">🌐 Público</button>
+        <button class="tab" onclick="switchView(1)">👤 Cliente</button>
+        <button class="tab" onclick="switchView(2)">⚖️ Asesor</button>
+        <button class="tab" onclick="switchView(3)">🔧 Admin</button>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main">
+
+        <!-- ======== VISTA 0: PÚBLICO ======== -->
+        <div class="view active" id="view0">
+            <div style="text-align:center; padding: 20px 0;">
+                <div class="hero-seal">RJL</div>
+                <h2 class="hero-title">¿Tu patrón te debe algo?</h2>
+                <p class="hero-subtitle">Calcula cuánto te deben y guarda evidencias con GPS</p>
+                <span class="disclaimer">⚠️ Orientación informativa — no sustituye asesoría legal formal</span>
+            </div>
+
+            <div class="card">
+                <div class="chat-container" id="pubChatContainer">
+                    <div class="chat-messages" id="pubMessages">
+                        <div class="message">
+                            <div class="avatar bot">R</div>
+                            <div class="bubble">
+                                ¡Hola! Soy el <strong>asesor virtual de RJL</strong>. 
+                                Estoy aquí para orientarte sobre tus derechos laborales. 
+                                Cuéntame tu situación y te ayudaré a entender cuánto te deben 
+                                y qué puedes hacer.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <textarea class="chat-input" id="pubInput" placeholder="Ej: Trabajo 10 horas diarias y no me pagan horas extra..." rows="1" onkeydown="handleKey(event, 'pub')" oninput="autoResize(this)"></textarea>
+                        <button class="send-btn" onclick="sendMsg('pub')">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======== VISTA 1: CLIENTE ======== -->
+        <div class="view" id="view1">
+            <!-- Foto Avatar -->
+            <div class="card">
+                <div class="card-title">📷 Mi Perfil</div>
+                <div class="photo-upload-area">
+                    <div class="photo-circle" id="clientPhotoCircle" onclick="document.getElementById('clientPhotoInput').click()">
+                        <span class="placeholder" id="clientPhotoPlaceholder">👤</span>
+                        <img id="clientPhotoPreview" style="display:none" alt="Foto de perfil">
+                    </div>
+                    <div class="photo-info">
+                        <strong>María González</strong>
+                        <span>Cliente desde Enero 2024</span>
+                        <br>
+                        <button class="btn-xs" onclick="document.getElementById('clientPhotoInput').click()">📷 Cambiar foto</button>
+                    </div>
+                    <input type="file" id="clientPhotoInput" accept="image/*" style="display:none" onchange="previewPhoto(this, 'clientPhotoPreview', 'clientPhotoPlaceholder')">
+                </div>
+            </div>
+
+            <!-- Mis Datos Laborales -->
+            <div class="card">
+                <div class="card-title">📋 Mis Datos Laborales</div>
+                <div class="chips-grid">
+                    <div class="chip"><span class="chip-label">Fecha de Ingreso</span><span class="chip-value">12/Ene/2024</span></div>
+                    <div class="chip"><span class="chip-label">Antigüedad</span><span class="chip-value">1 año 3 meses</span></div>
+                    <div class="chip"><span class="chip-label">Salario Diario</span><span class="chip-value">$320 MXN</span></div>
+                    <div class="chip"><span class="chip-label">Días Laborales</span><span class="chip-value">Lun – Sáb</span></div>
+                    <div class="chip"><span class="chip-label">Horario (papel)</span><span class="chip-value">9am – 6pm</span></div>
+                    <div class="chip"><span class="chip-label">IMSS</span><span class="chip-value red">No tiene</span></div>
+                    <div class="chip"><span class="chip-label">Domicilio actual</span><span class="chip-value">Col. Guerrero</span></div>
+                    <div class="chip"><span class="chip-label">Contrato</span><span class="chip-value red">Sin contrato</span></div>
+                </div>
+                <button class="btn btn-outline btn-full" style="margin-top:12px" onclick="toast('✅ Datos actualizados correctamente')">✏️ Actualizar mis datos</button>
+            </div>
+
+            <!-- Bóveda de Evidencias -->
+            <div class="card">
+                <div class="card-title">📁 Bóveda de Evidencias</div>
+                <div class="card-subtitle">Cada archivo tiene sello de tiempo y GPS</div>
+                <div class="evidence-grid">
+                    <button class="evidence-btn has-files" onclick="openEvModal('Entrada al Trabajo', 'Foto + GPS + hora de llegada', 'green')">
+                        <div class="evidence-icon icon-green">📸</div>
+                        <span class="evidence-label">Entrada al Trabajo</span>
+                        <span class="evidence-subtext">Foto + GPS + hora</span>
+                        <span class="evidence-badge">14</span>
+                    </button>
+                    <button class="evidence-btn has-files" onclick="openEvModal('Salida del Trabajo', 'Horas extra comprobadas', 'red')">
+                        <div class="evidence-icon icon-red">🚪</div>
+                        <span class="evidence-label">Salida del Trabajo</span>
+                        <span class="evidence-subtext">Horas extra comprobadas</span>
+                        <span class="evidence-badge">14</span>
+                    </button>
+                    <button class="evidence-btn" onclick="openEvModal('Contrato de Trabajo', 'Si tienes uno firmado', 'gold')">
+                        <div class="evidence-icon icon-gold">📄</div>
+                        <span class="evidence-label">Contrato de Trabajo</span>
+                        <span class="evidence-subtext">Sin archivos aún</span>
+                    </button>
+                    <button class="evidence-btn has-files" onclick="openEvModal('Recibo o Transferencia', 'Salario recibido', 'blue')">
+                        <div class="evidence-icon icon-blue">💳</div>
+                        <span class="evidence-label">Recibo o Transferencia</span>
+                        <span class="evidence-subtext">Salario recibido</span>
+                        <span class="evidence-badge">6</span>
+                    </button>
+                    <button class="evidence-btn has-files" onclick="openEvModal('Gastos Médicos', 'Sin IMSS, tú pagas', 'purple')">
+                        <div class="evidence-icon icon-purple">🏥</div>
+                        <span class="evidence-label">Gastos Médicos</span>
+                        <span class="evidence-subtext">Sin IMSS, tú pagas</span>
+                        <span class="evidence-badge">3</span>
+                    </button>
+                    <button class="evidence-btn" onclick="openEvModal('Cambio de Domicilio', 'Riesgo en trayecto', 'gray')">
+                        <div class="evidence-icon icon-gray">🏠</div>
+                        <span class="evidence-label">Cambio de Domicilio</span>
+                        <span class="evidence-subtext">Sin archivos aún</span>
+                    </button>
+                    <button class="evidence-btn" onclick="openEvModal('Otro Comprobante', 'Cualquier evidencia extra', 'gray')">
+                        <div class="evidence-icon icon-gray">📎</div>
+                        <span class="evidence-label">Otro Comprobante</span>
+                        <span class="evidence-subtext">Sin archivos aún</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Consultas al Asesor -->
+            <div class="card">
+                <div class="card-title">💬 Mis Consultas al Asesor</div>
+                <div class="ticket">
+                    <div class="ticket-dot green"></div>
+                    <div class="ticket-info">
+                        <strong>¿Me corresponde prima dominical si trabajo domingos?</strong>
+                        <span>En proceso · Hace 2 días</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket-dot gold"></div>
+                    <div class="ticket-info">
+                        <strong>Me cambiaron el horario sin avisar, ¿qué hago?</strong>
+                        <span>Sin leer · Hoy 10:34am</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket-dot gray"></div>
+                    <div class="ticket-info">
+                        <strong>¿Cuánto tiempo tiene el patrón para liquidarme?</strong>
+                        <span>Atendido · Hace 1 semana</span>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-full" style="margin-top:12px" onclick="toast('✅ Nueva consulta enviada al asesor')">➕ Nueva consulta al asesor</button>
+            </div>
+
+            <!-- Chat del Cliente -->
+            <div class="card">
+                <div class="card-title">🤖 Asesor Virtual</div>
+                <div class="chat-container">
+                    <div class="chat-messages client-chat" id="clientMessages">
+                        <div class="message">
+                            <div class="avatar bot">R</div>
+                            <div class="bubble">
+                                Hola <strong>María</strong>. Estoy aquí para ayudarte. 
+                                Cuéntame cualquier duda sobre tu situación laboral.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <textarea class="chat-input" id="clientInput" placeholder="Escribe tu consulta aquí..." rows="1" onkeydown="handleKey(event, 'client')" oninput="autoResize(this)"></textarea>
+                        <button class="send-btn" onclick="sendMsg('client')">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======== VISTA 2: ASESOR JURÍDICO ======== -->
+        <div class="view" id="view2">
+            <!-- Foto Avatar Asesor -->
+            <div class="card">
+                <div class="card-title">📷 Mi Perfil Profesional</div>
+                <div class="photo-upload-area">
+                    <div class="photo-circle" id="advisorPhotoCircle" onclick="document.getElementById('advisorPhotoInput').click()">
+                        <span class="placeholder" id="advisorPhotoPlaceholder">⚖️</span>
+                        <img id="advisorPhotoPreview" style="display:none" alt="Foto de perfil">
+                    </div>
+                    <div class="photo-info">
+                        <strong>Lic. Carlos Mendoza</strong>
+                        <span>Asesor Jurídico · 12 clientes activos</span>
+                        <br>
+                        <button class="btn-xs" onclick="document.getElementById('advisorPhotoInput').click()">📷 Cambiar foto</button>
+                    </div>
+                    <input type="file" id="advisorPhotoInput" accept="image/*" style="display:none" onchange="previewPhoto(this, 'advisorPhotoPreview', 'advisorPhotoPlaceholder')">
+                </div>
+            </div>
+
+            <!-- Bandeja de Tickets -->
+            <div class="card">
+                <div class="card-title">📬 Bandeja de Tickets</div>
+                <div class="ticket">
+                    <div class="ticket-dot gold"></div>
+                    <div class="ticket-info">
+                        <strong>María G. — Me cambiaron el horario sin avisar</strong>
+                        <span>Sin leer · Hoy 10:34am · 1 año 3 meses · Sin IMSS · 34 evidencias</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket-dot green"></div>
+                    <div class="ticket-info">
+                        <strong>Jorge R. — ¿Me corresponde prima dominical?</strong>
+                        <span>En proceso · Hace 2 días · 8 meses · 12 evidencias</span>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="ticket-dot gray"></div>
+                    <div class="ticket-info">
+                        <strong>Ana P. — ¿Cuánto tiempo para liquidarme?</strong>
+                        <span>Atendido · Hace 1 semana · 2 años 1 mes · 21 evidencias</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mis Clientes -->
+            <div class="card">
+                <div class="card-title">👥 Mis Clientes</div>
+                <div class="ticket">
+                    <div class="avatar bot" style="background:var(--purple)">MG</div>
+                    <div class="ticket-info">
+                        <strong>María González</strong>
+                        <span>1 año 3 meses · Sin IMSS · 34 evidencias</span>
+                    </div>
+                    <span style="background:var(--red);color:white;padding:4px 8px;border-radius:10px;font-size:11px">Alta prioridad</span>
+                </div>
+                <div class="ticket">
+                    <div class="avatar bot" style="background:var(--blue)">JR</div>
+                    <div class="ticket-info">
+                        <strong>Jorge Ramírez</strong>
+                        <span>8 meses · Sin contrato · 12 evidencias</span>
+                    </div>
+                    <span style="background:var(--gold);color:var(--navy);padding:4px 8px;border-radius:10px;font-size:11px">Media</span>
+                </div>
+                <div class="ticket">
+                    <div class="avatar bot" style="background:var(--green)">AP</div>
+                    <div class="ticket-info">
+                        <strong>Ana Pérez</strong>
+                        <span>2 años 1 mes · Con IMSS · 21 evidencias</span>
+                    </div>
+                    <span style="background:var(--green);color:white;padding:4px 8px;border-radius:10px;font-size:11px">Normal</span>
+                </div>
+            </div>
+
+            <!-- Proyección María González -->
+            <div class="card" id="projCard">
+                <div class="card-title">📊 Proyección — María González</div>
+                <div class="card-subtitle">$320/día · 1 año 3 meses · Sin IMSS · 14 registros entrada/salida</div>
+                <div class="chips-grid">
+                    <div class="proj-chip"><div class="proj-value">$28,800</div><div class="proj-label">Indemnización 90 días · Art. 50 LFT</div></div>
+                    <div class="proj-chip"><div class="proj-value">$10,240</div><div class="proj-label">20 días × año · 1.25 años</div></div>
+                    <div class="proj-chip"><div class="proj-value">$1,920</div><div class="proj-label">Vacaciones proporcionales</div></div>
+                    <div class="proj-chip"><div class="proj-value">$8,640</div><div class="proj-label">Horas Extra est. · 14 registros × 2h</div></div>
+                    <div class="proj-chip"><div class="proj-value">$2,450</div><div class="proj-label">Gastos Médicos · 3 tickets</div></div>
+                    <div class="proj-chip special"><div class="proj-value" style="font-size:26px">$52,050</div><div class="proj-label">Total estimado · Rango negociación</div></div>
+                </div>
+                <div class="analysis-box" id="lawyerAnalysis">
+                    <div class="analysis-header">🤖 Análisis de IA — Estrategia del Caso</div>
+                    <span id="analysisContent">Presiona el botón para que la IA analice el expediente y sugiera la estrategia de negociación.</span>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap">
+                    <button class="btn btn-outline" id="analyzeBtn" onclick="analyzeCase()">🤖 Analizar con IA</button>
+                    <button class="btn btn-gold" onclick="toast('📄 PDF generado y enviado a tu correo')">📄 Generar PDF</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======== VISTA 3: ADMINISTRADOR ======== -->
+        <div class="view" id="view3">
+            <!-- Panel General -->
+            <div class="card">
+                <div class="card-title">📈 Panel General</div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-value">38</div><div class="stat-label">👤 Clientes activos</div></div>
+                    <div class="stat-card"><div class="stat-value">4</div><div class="stat-label">⚖️ Asesores</div></div>
+                    <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">📬 Tickets abiertos</div></div>
+                    <div class="stat-card"><div class="stat-value">$7,600</div><div class="stat-label">💰 Ingresos / mes</div></div>
+                </div>
+            </div>
+
+            <!-- Gestión de Usuarios -->
+            <div class="card">
+                <div class="card-title">🔧 Gestión de Usuarios</div>
+                <button class="btn btn-gold btn-full" style="margin-bottom:16px" onclick="toast('✅ Nuevo usuario creado')">➕ Nuevo usuario</button>
+                <strong style="color:var(--text-dim);font-size:12px;text-transform:uppercase">Asesores</strong>
+                <div class="ticket">
+                    <div class="avatar bot">LC</div>
+                    <div class="ticket-info"><strong>Lic. Carlos Mendoza</strong><span>Asesor · 12 clientes</span></div>
+                    <button class="btn-xs" onclick="toast('✏️ Editando perfil')">✏️ editar</button>
+                    <button class="btn-xs" style="color:var(--red)" onclick="toast('🗑️ Usuario eliminado')">🗑️ eliminar</button>
+                </div>
+                <div class="ticket">
+                    <div class="avatar bot">LR</div>
+                    <div class="ticket-info"><strong>Lic. Rosa Herrera</strong><span>Asesor · 8 clientes</span></div>
+                    <button class="btn-xs" onclick="toast('✏️ Editando perfil')">✏️ editar</button>
+                    <button class="btn-xs" style="color:var(--red)" onclick="toast('🗑️ Usuario eliminado')">🗑️ eliminar</button>
+                </div>
+
+                <div style="border-top:1px solid rgba(200,168,75,0.2); margin:12px 0"></div>
+                <strong style="color:var(--text-dim);font-size:12px;text-transform:uppercase">Clientes Recientes</strong>
+                <div class="ticket">
+                    <div class="avatar bot" style="background:var(--blue)">MG</div>
+                    <div class="ticket-info"><strong>María González</strong><span>Cliente · Asesor: C. Mendoza</span></div>
+                    <button class="btn-xs" onclick="toast('🔄 Reasignando cliente')">🔄 reasignar</button>
+                    <button class="btn-xs" style="color:var(--red)" onclick="toast('🗑️ Cliente eliminado')">🗑️ eliminar</button>
+                </div>
+                <div class="ticket">
+                    <div class="avatar bot" style="background:var(--blue)">JR</div>
+                    <div class="ticket-info"><strong>Jorge Ramírez</strong><span>Cliente · Asesor: R. Herrera</span></div>
+                    <button class="btn-xs" onclick="toast('🔄 Reasignando cliente')">🔄 reasignar</button>
+                    <button class="btn-xs" style="color:var(--red)" onclick="toast('🗑️ Cliente eliminado')">🗑️ eliminar</button>
+                </div>
+            </div>
+
+            <!-- Configuración -->
+            <div class="card">
+                <div class="card-title">⚙️ Configuración del Sistema</div>
+                <label style="color:var(--text-dim);font-size:12px">Salario Mínimo Vigente (MXN/día)</label>
+                <input type="number" class="form-input" value="248.93" step="0.01">
+                <label style="color:var(--text-dim);font-size:12px">Precio Suscripción Mensual (MXN)</label>
+                <input type="number" class="form-input" value="200">
+                <label style="color:var(--text-dim);font-size:12px">Límite preguntas públicas (sin sesión)</label>
+                <input type="number" class="form-input" value="3">
+                <button class="btn btn-gold btn-full" onclick="toast('💾 Cambios guardados correctamente')">💾 Guardar cambios</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ==================== TOAST ==================== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ==================== MODAL ==================== -->
+    <div class="modal-overlay" id="evidenceModal" onclick="closeEvModal(event)">
+        <div class="modal-sheet" onclick="event.stopPropagation()">
+            <div class="modal-handle"></div>
+            <div class="modal-title" id="modalTitle">Categoría</div>
+            <div class="modal-subtitle" id="modalSubtitle">Subtítulo</div>
+            <button class="modal-option" onclick="fakeUpload()">📷 Tomar foto ahora (GPS automático)</button>
+            <button class="modal-option" onclick="fakeUpload()">🖼️ Elegir de galería</button>
+            <button class="modal-option" onclick="fakeUpload()">📁 Subir archivo / PDF</button>
+            <button class="modal-cancel" onclick="closeEvModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== ESTADO GLOBAL ====================
+        let currentRole = 0;
+        const roles = ['Sin sesión', 'Cliente', 'Asesor Jurídico', 'Administrador'];
+        let currentView = 0;
+
+        const chatState = {
+            pub: { history: [], count: 0, limit: 3, typing: false },
+            client: { history: [], count: 0, limit: 999, typing: false }
+        };
+
+        // ==================== NAVEGACIÓN ====================
+        function switchView(n) {
+            currentView = n;
+            document.querySelectorAll('.view').forEach((v, i) => {
+                v.classList.toggle('active', i === n);
+            });
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', i === n);
+            });
+        }
+
+        function cycleRole() {
+            currentRole = (currentRole + 1) % roles.length;
+            document.getElementById('rolePill').textContent = roles[currentRole];
+            const sv = currentRole === 0 ? 0 : currentRole;
+            switchView(sv);
+            toast(`🔄 Perfil cambiado a: ${roles[currentRole]}`);
+        }
+
+        // ==================== TOAST ====================
+        function toast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._timeout);
+            t._timeout = setTimeout(() => t.classList.remove('show'), 2800);
+        }
+
+        // ==================== MODAL ====================
+        function openEvModal(title, subtitle) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalSubtitle').textContent = subtitle;
+            document.getElementById('evidenceModal').classList.add('show');
+        }
+
+        function closeEvModal(e) {
+            if (e && e.target !== document.getElementById('evidenceModal')) return;
+            document.getElementById('evidenceModal').classList.remove('show');
+        }
+
+        function fakeUpload() {
+            closeEvModal();
+            toast('✅ Archivo guardado con sello de tiempo y GPS');
+        }
+
+        // ==================== FOTO AVATAR ====================
+        function previewPhoto(input, previewId, placeholderId) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById(previewId);
+                const placeholder = document.getElementById(placeholderId);
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+                toast('📷 Foto actualizada correctamente');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ==================== CHAT ====================
+        function autoResize(el) {
+            el.style.height = 'auto';
+            el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+        }
+
+        function handleKey(e, chatId) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMsg(chatId);
+            }
+        }
+
+        async function sendMsg(chatId) {
+            const input = document.getElementById(chatId === 'pub' ? 'pubInput' : 'clientInput');
+            const text = input.value.trim();
+            if (!text || chatState[chatId].typing) return;
+
+            input.value = '';
+            input.style.height = 'auto';
+
+            const state = chatState[chatId];
+            state.count++;
+            state.history.push({ role: 'user', content: text });
+
+            // Agregar mensaje usuario al DOM
+            const msgsContainer = document.getElementById(chatId === 'pub' ? 'pubMessages' : 'clientMessages');
+            addMessage(msgsContainer, 'user', text);
+
+            // Verificar límite para chat público
+            if (chatId === 'pub' && state.count > state.limit) {
+                showUpsell(msgsContainer);
+                return;
+            }
+
+            // Mostrar typing
+            showTyping(msgsContainer);
+            state.typing = true;
+
+            try {
+                const systemPrompt = chatId === 'pub' 
+                    ? getPublicSystemPrompt() 
+                    : getClientSystemPrompt();
+
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 1000,
+                        system: systemPrompt,
+                        messages: state.history
+                    })
+                });
+
+                const data = await response.json();
+                removeTyping(msgsContainer);
+                state.typing = false;
+
+                const replyText = data.content[0].text;
+                state.history.push({ role: 'assistant', content: replyText });
+                addMessage(msgsContainer, 'bot', replyText);
+
+            } catch (error) {
+                removeTyping(msgsContainer);
+                state.typing = false;
+                addMessage(msgsContainer, 'bot', 'Lo siento, tuve un problema técnico. Por favor intenta de nuevo en unos momentos.');
+            }
+        }
+
+        function getPublicSystemPrompt() {
+            return `Eres el asesor virtual de RJL (Respaldo Jurídico Laboral), especialista en derecho laboral mexicano (Ley Federal del Trabajo). Atiendes a trabajadores de pequeñas empresas y comercios informales.
+
+ESPECIALIDADES: horas extra, liquidación, finiquito, vacaciones, aguinaldo, IMSS, prima dominical, riesgo de trabajo en trayecto, cambio de domicilio.
+
+INSTRUCCIONES:
+- Responde en español claro y simple, sin tecnicismos innecesarios
+- Cuando el usuario dé datos concretos (salario, antigüedad, horarios), haz el cálculo exacto
+- Sé conciso pero completo
+- Al final de cada respuesta, agrega UNA frase natural (no forzada) mencionando que con la suscripción RJL pueden guardar evidencias con GPS, obtener proyecciones exactas y hablar con un asesor real por $200/mes
+- Usa solo <strong> para negritas, no markdown`;
+        }
+
+        function getClientSystemPrompt() {
+            return `Eres el asesor virtual de RJL, especialista en derecho laboral mexicano. Estás hablando con María González, una clienta suscrita.
+
+Datos de su caso:
+- Fecha de ingreso: 12 de enero de 2024 (1 año 3 meses)
+- Salario diario: $320 MXN
+- Días laborales: lunes a sábado
+- Horario en papel: 9am a 6pm
+- Sin IMSS registrado
+- Sin contrato escrito
+- Domicilio: Col. Guerrero (para riesgo en trayecto)
+- Evidencias: 14 entradas, 14 salidas, 6 recibos, 3 tickets médicos
+
+Responde de forma personalizada. Usa <strong> para énfasis.`;
+        }
+
+        function showUpsell(container) {
+            const upsellHTML = `
+                <div class="message">
+                    <div class="avatar bot">R</div>
+                    <div class="bubble">
+                        Has alcanzado el límite de consultas gratuitas.
+                        <div class="upsell-box">
+                            <h3>🔐 Accede sin límites con RJL</h3>
+                            <p style="color:var(--text-dim)">Con tu suscripción de <strong>$200 MXN/mes</strong>:</p>
+                            <ul>
+                                <li>✅ Asesoría ilimitada con IA especializada</li>
+                                <li>✅ Bóveda de evidencias con GPS y timestamp</li>
+                                <li>✅ Proyección exacta de tu liquidación</li>
+                                <li>✅ Atención directa con un asesor jurídico</li>
+                                <li>✅ Expediente listo para presentar en tribunal</li>
+                            </ul>
+                            <p style="color:var(--gold-light);font-size:13px"><strong>Solo $10 pesos al día. Tu tranquilidad no tiene precio.</strong></p>
+                        </div>
+                    </div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', upsellHTML);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function addMessage(container, role, text) {
+            const isUser = role === 'user';
+            const avatarContent = isUser 
+                ? '<span style="font-size:14px">👤</span>' 
+                : 'R';
+            const avatarClass = isUser ? 'user' : 'bot';
+
+            const formatted = formatReply(text);
+            const msgHTML = `
+                <div class="message ${isUser ? 'user' : ''}">
+                    <div class="avatar ${avatarClass}">${avatarContent}</div>
+                    <div class="bubble">${formatted}</div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', msgHTML);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTyping(container) {
+            const typingHTML = `
+                <div class="message" id="typingIndicator">
+                    <div class="avatar bot">R</div>
+                    <div class="bubble">
+                        <div class="typing-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', typingHTML);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removeTyping(container) {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        function formatReply(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // ==================== ANÁLISIS DE CASO ====================
+        async function analyzeCase() {
+            const btn = document.getElementById('analyzeBtn');
+            const content = document.getElementById('analysisContent');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Analizando…';
+            content.innerHTML = '<div style="text-align:center;padding:20px"><span class="spinner"></span></div>';
+
+            try {
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 1500,
+                        system: `Eres un abogado laboralista experto en derecho mexicano (LFT). Analiza este expediente y da una estrategia de negociación.
+
+DATOS DEL CASO — María González:
+- Antigüedad: 1 año 3 meses (desde 12/ene/2024)
+- Salario diario: $320 MXN (salario real, sin recibo formal)
+- Jornada en papel: 9am–6pm, lunes a sábado
+- Evidencia de jornada real: registros de salida hasta 8pm–9pm en 14 días
+- Sin contrato escrito
+- Sin IMSS (empleador no la registró)
+- Gastos médicos propios: $2,450 en tickets documentados
+- Domicilio registrado: Col. Guerrero (riesgo en trayecto)
+- Total estimado: $52,050
+
+Proporciona:
+1. Fortalezas del caso (qué pruebas son más sólidas)
+2. Debilidades o riesgos
+3. Estrategia de negociación (conciliación vs tribunal)
+4. Rango realista de lo que se puede obtener
+5. Próximos pasos sugeridos
+
+Sé conciso, práctico y directo. Usa <strong> para puntos clave. Responde en español.`,
+                        messages: [{ role: 'user', content: 'Analiza este expediente laboral y proporciona estrategia de negociación.' }]
+                    })
+                });
+
+                const data = await response.json();
+                const analysisText = data.content[0].text;
+                content.innerHTML = formatReply(analysisText);
+                btn.innerHTML = '🔄 Actualizar análisis';
+
+            } catch (error) {
+                content.innerHTML = 'Error al generar el análisis. Intenta de nuevo.';
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // ==================== INICIALIZACIÓN ====================
+        console.log('🚀 RJL — Respaldo Jurídico Laboral');
+        console.log('💡 Certeza Jurídica en la Palma de su Mano');
+        console.log('✅ Prototipo funcional cargado correctamente');
+    </script>
+</body>
+</html>

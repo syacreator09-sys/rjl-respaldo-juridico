@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0A1628;
+  --navy-mid: #111E35;
+  --navy-card: #172240;
+  --navy-light: #1E2E50;
+  --gold: #C8A84B;
+  --gold-light: #E5C97A;
+  --gold-dim: #7A6030;
+  --cream: #F2EDE0;
+}
+
+@layer base {
+  body { @apply bg-[#0A1628] text-[#F2EDE0]; }
+  ::-webkit-scrollbar { @apply w-1; }
+  ::-webkit-scrollbar-thumb { @apply bg-navy-light rounded; }
+}
+
+@layer utilities {
+  .text-gold { color: var(--gold); }
+  .text-gold-light { color: var(--gold-light); }
+  .bg-navy-card { background: var(--navy-card); }
+  .bg-navy-mid { background: var(--navy-mid); }
+  .border-gold { border-color: var(--gold); }
+}
