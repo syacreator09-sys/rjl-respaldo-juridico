@@ -31,10 +31,25 @@ export interface ResultadoLiquidacion {
 const SALARIO_MINIMO_DIA = Number(process.env.SALARIO_MINIMO_DIA ?? 278.80)
 const DIAS_AGUINALDO = 15
 
+// LFT Art. 76 — Tabla vigente desde reforma DOF 27-dic-2022 (efectiva 01-ene-2023)
+// Duplica el mínimo: año 1 pasó de 6 a 12 días; +2 días por año adicional
+const TABLA_VACACIONES: ReadonlyArray<{ hasta: number; dias: number }> = [
+  { hasta: 1,  dias: 12 },
+  { hasta: 2,  dias: 14 },
+  { hasta: 3,  dias: 16 },
+  { hasta: 4,  dias: 18 },
+  { hasta: 9,  dias: 20 },
+  { hasta: 14, dias: 22 },
+  { hasta: 19, dias: 24 },
+  { hasta: 24, dias: 26 },
+  { hasta: 29, dias: 28 },
+  { hasta: 34, dias: 30 },
+  { hasta: Infinity, dias: 32 },
+]
+
 function calcularVacaciones(anios: number): number {
   if (anios < 1) return 0
-  // LFT Art. 76: 6 días primer año, +2 días cada año siguiente, máx 24 días
-  return Math.min(6 + (anios - 1) * 2, 24)
+  return TABLA_VACACIONES.find(r => anios <= r.hasta)?.dias ?? 12
 }
 
 function calcularAntiguedad(fechaIngreso: string, fechaBaja: string): {

@@ -1,0 +1,332 @@
+[
+  {
+    "id": "lft-art-008",
+    "matter": "general",
+    "subMatter": "definicion",
+    "article": "Art. 8 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Definición de trabajador",
+    "text": "Trabajador es la persona física que presta a otra, física o moral, un trabajo personal subordinado. Para los efectos de esta disposición, se entiende por trabajo toda actividad humana, intelectual o material, independientemente del grado de preparación técnica requerido por cada profesión u oficio.",
+    "keywords": ["trabajador", "trabajo", "subordinado", "persona fisica", "empleo", "definicion"]
+  },
+  {
+    "id": "lft-art-020",
+    "matter": "contrato",
+    "subMatter": "relacion_trabajo",
+    "article": "Art. 20 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Relación de trabajo y contrato",
+    "text": "Se entiende por relación de trabajo, cualquiera que sea el acto que le dé origen, la prestación de un trabajo personal subordinado a una persona, mediante el pago de un salario. Contrato individual de trabajo es aquel por virtud del cual una persona se obliga a prestar a otra un trabajo personal subordinado, mediante el pago de un salario. La prestación de un trabajo a que se refiere el párrafo primero y el contrato celebrado producen los mismos efectos.",
+    "keywords": ["contrato", "relacion trabajo", "subordinado", "salario", "persona", "obligacion"]
+  },
+  {
+    "id": "lft-art-021",
+    "matter": "contrato",
+    "subMatter": "presuncion",
+    "article": "Art. 21 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Presunción de relación laboral",
+    "text": "Se presumen la existencia del contrato y de la relación de trabajo entre el que presta un trabajo personal y el que lo recibe. Esta presunción opera aunque no exista contrato escrito. El patrón siempre tiene la carga de la prueba cuando niegue la relación laboral.",
+    "keywords": ["presuncion", "contrato", "relacion laboral", "prueba", "escrito", "sin contrato"]
+  },
+  {
+    "id": "lft-art-035",
+    "matter": "contrato",
+    "subMatter": "duracion",
+    "article": "Arts. 35-39 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Tipos de contrato por duración",
+    "text": "Las relaciones de trabajo pueden ser por obra o tiempo determinado o por tiempo indeterminado o para temporada. En caso de duda, deberán considerarse como por tiempo indeterminado. Art. 39-A: El periodo de prueba no puede exceder de 30 días (90 días para puestos de dirección). Art. 39-B: El periodo de capacitación inicial no puede exceder de 3 meses (6 meses para puestos de dirección). En ambos casos el trabajador goza de las mismas prestaciones que el personal de planta.",
+    "keywords": ["contrato", "tiempo indeterminado", "tiempo determinado", "periodo de prueba", "capacitacion", "temporal", "obra determinada", "planta"]
+  },
+  {
+    "id": "lft-art-047",
+    "matter": "terminacion",
+    "subMatter": "rescision_patron",
+    "article": "Art. 47 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Causas de rescisión sin responsabilidad para el patrón",
+    "text": "Son causas de rescisión de la relación de trabajo, sin responsabilidad para el patrón: I. Que el trabajador incurra en engaños al ser contratado; II. Incurrir en actos de deshonestidad, violencia o malos tratos; III. Faltas de probidad u honradez; IV. Daño intencional a bienes del patrón; IX. Más de 3 faltas injustificadas en 30 días o una sola si se trata de más del 50% de los días del mes; X. Desobedecer reiteradamente al patrón sin causa justificada; XII. Presentarse en estado de embriaguez o bajo influencia de narcóticos. El aviso de rescisión debe darse por escrito dentro de los 30 días siguientes al conocimiento de la causa.",
+    "keywords": ["causas rescision", "despido justificado", "faltas", "deshonestidad", "violencia", "embriaguez", "inasistencias", "aviso", "30 dias"]
+  },
+  {
+    "id": "lft-art-048",
+    "matter": "terminacion",
+    "subMatter": "derechos_trabajador_despedido",
+    "article": "Art. 48 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Reinstalación o indemnización por despido injustificado",
+    "text": "El trabajador podrá solicitar ante el Tribunal Laboral a su elección: (1) que se le reinstale en el trabajo que desempeñaba, o (2) que se le indemnice con el importe de tres meses de salario. Si en el juicio el patrón no comprueba la causa de la rescisión, el trabajador tendrá derecho además al pago de salarios vencidos desde la fecha del despido hasta que se cumpla la resolución, con un límite de 12 meses; si se excede ese plazo se generan intereses al 2% mensual sobre el importe de 15 meses de salario.",
+    "keywords": ["reinstalacion", "indemnizacion", "tres meses", "salarios vencidos", "despido injustificado", "tribunal laboral", "prueba", "12 meses"]
+  },
+  {
+    "id": "lft-art-049-050",
+    "matter": "terminacion",
+    "subMatter": "indemnizacion_constitucion",
+    "article": "Arts. 49-50 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Indemnización constitucional: 3 meses + 20 días por año",
+    "text": "Art. 49: El patrón puede eximirse de reinstalar al trabajador pagando la indemnización constitucional. Art. 50: La indemnización por despido injustificado de contrato por tiempo indeterminado consiste en: (a) 3 meses de salario integrado (indemnización constitucional), más (b) 20 días de salario integrado por cada año de servicios prestados, más (c) la parte proporcional de: vacaciones, prima vacacional, aguinaldo y PTU del último año, más (d) prima de antigüedad (Art. 162). El salario base para el cálculo es el salario integrado (salario base + partes proporcionales de prestaciones). FÓRMULA: Indemnización = (Salario diario × 90) + (Salario diario × 20 × años) + prima antigüedad + proporcionales.",
+    "keywords": ["indemnizacion", "liquidacion", "3 meses", "tres meses", "90 dias", "20 dias por año", "salario integrado", "años servicio", "despido", "formula", "calculo"]
+  },
+  {
+    "id": "lft-art-051-052",
+    "matter": "terminacion",
+    "subMatter": "rescision_trabajador",
+    "article": "Arts. 51-52 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Rescisión sin responsabilidad para el trabajador (renuncia justificada)",
+    "text": "Art. 51: El trabajador puede separarse del trabajo y recibir la misma indemnización del Art. 50 cuando el patrón: I. Lo engañe sobre las condiciones de trabajo; II. Cometa actos de violencia, acoso sexual o malos tratos; IV. Reduzca el salario; V. No pague el salario en fecha o lugar convenidos; VII. Exista peligro grave para su seguridad o salud; IX. Exija actos que atenten contra su dignidad. Art. 52: El trabajador debe separarse dentro de 30 días de ocurrida la causa. Tiene derecho a la indemnización completa del Art. 50 (3 meses + 20 días/año + proporcionales).",
+    "keywords": ["rescision trabajador", "renuncia justificada", "acoso", "violencia", "reduccion salario", "no pago salario", "indemnizacion", "30 dias", "separarse"]
+  },
+  {
+    "id": "lft-art-053",
+    "matter": "terminacion",
+    "subMatter": "finiquito",
+    "article": "Arts. 53-55 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Terminación de la relación de trabajo y finiquito",
+    "text": "Art. 53: Son causas de terminación de la relación de trabajo: I. Mutuo consentimiento (renuncia); II. Muerte del trabajador; III. Terminación de la obra o vencimiento del contrato; IV. Incapacidad física o mental. Cuando el trabajador renuncia voluntariamente (sin causa imputable al patrón), tiene derecho al FINIQUITO: partes proporcionales de vacaciones, prima vacacional y aguinaldo del período trabajado, más prima de antigüedad (Art. 162) si tiene más de 15 años de servicio o si renuncia por causa imputable al patrón. NO tiene derecho a indemnización constitucional (3 meses ni 20 días/año).",
+    "keywords": ["finiquito", "renuncia", "terminacion", "mutuo consentimiento", "vacaciones proporcionales", "aguinaldo proporcional", "prima antiguedad", "15 años", "diferencia liquidacion"]
+  },
+  {
+    "id": "lft-art-058-066",
+    "matter": "jornada",
+    "subMatter": "tipos_jornada",
+    "article": "Arts. 58-66 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Jornada de trabajo: tipos y límites",
+    "text": "Art. 58: Jornada de trabajo es el tiempo durante el cual el trabajador está a disposición del patrón. Art. 60: Jornada diurna (6:00-20:00): máximo 8 horas. Jornada nocturna (20:00-6:00): máximo 7 horas. Jornada mixta: máximo 7.5 horas. Art. 61: La duración máxima de la jornada semanal es 48 horas. Art. 63: Durante la jornada el trabajador tiene derecho a un reposo de al menos media hora. Art. 64: Si el trabajador no puede salir durante el reposo, ese tiempo se cuenta como jornada y debe ser remunerado. Art. 66: El trabajador puede prolongar la jornada por circunstancias extraordinarias, pero no puede exceder 3 horas diarias ni 3 veces a la semana.",
+    "keywords": ["jornada", "horario", "diurna", "nocturna", "mixta", "8 horas", "7 horas", "48 horas semana", "descanso", "limite"]
+  },
+  {
+    "id": "lft-art-067-068",
+    "matter": "jornada",
+    "subMatter": "horas_extra",
+    "article": "Arts. 67-68 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Horas extraordinarias: pago y límites",
+    "text": "Art. 67: Las horas extraordinarias se pagarán con un 100% más sobre el salario de la hora ordinaria. EJEMPLO: Si el salario hora es $50, la hora extra vale $100 (el doble). Art. 68: Los trabajadores no están obligados a trabajar horas extra. Si las horas extra exceden de 9 horas semanales, el patrón debe pagar el excedente con un 200% adicional (triple del salario normal). LÍMITE: máximo 3 horas diarias y 3 veces por semana (9 horas semanales). Horas extra voluntarias y pagadas no pueden ser causa de rescisión. Si el patrón no paga las horas extra, el trabajador puede demandarlas y reclamar hasta 2 años hacia atrás.",
+    "keywords": ["horas extra", "horas extraordinarias", "100 por ciento", "doble", "triple", "200 por ciento", "pago extra", "limite", "9 horas semana", "overtime", "tiempo extra"]
+  },
+  {
+    "id": "lft-art-069-075",
+    "matter": "jornada",
+    "subMatter": "descanso",
+    "article": "Arts. 69-75 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Días de descanso y prima dominical",
+    "text": "Art. 69: Por cada 6 días de trabajo, el trabajador tiene derecho a 1 día de descanso con salario íntegro. Art. 71: El descanso preferentemente debe ser el domingo. Art. 73: Si el trabajador trabaja en su día de descanso, debe recibir un salario doble (200%) además del salario de ese día (es decir, triple en total). Art. 74: Días de descanso obligatorio: 1 enero, 1 mayo (Día del Trabajo), 16 septiembre, 25 diciembre, y otros. Art. 75: Prima dominical: el trabajador que labore en domingo tiene derecho a una prima del 25% adicional sobre su salario ordinario de ese día.",
+    "keywords": ["descanso", "domingo", "dia de descanso", "salario doble", "prima dominical", "25 por ciento", "trabajar domingo", "dias festivos", "asueto"]
+  },
+  {
+    "id": "lft-art-076-080",
+    "matter": "prestaciones",
+    "subMatter": "vacaciones",
+    "article": "Arts. 76-80 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Vacaciones y prima vacacional (reforma 2023)",
+    "text": "Art. 76 (reforma DOF 27-dic-2022, vigente 2023): Los trabajadores con más de 1 año tienen derecho a vacaciones pagadas según tabla: 1 año=12 días, 2 años=14, 3 años=16, 4 años=18, 5-9 años=20, 10-14 años=22, 15-19 años=24, 20-24 años=26, 25-29 años=28, 30-34 años=30, 35+ años=32. Art. 78: Las vacaciones no pueden compensarse con dinero salvo si la relación de trabajo se termina. Art. 79: Si no se toman en el año, no se pierden, se acumulan. Art. 80: Prima vacacional: los trabajadores tienen derecho a una prima de al menos 25% sobre el salario de los días de vacaciones. CÁLCULO PRIMA VACACIONAL = días de vacaciones × salario diario × 25%.",
+    "keywords": ["vacaciones", "días vacaciones", "prima vacacional", "25 por ciento", "reforma 2023", "12 dias", "tabla vacaciones", "año servicio", "descanso anual", "proporcional vacaciones"]
+  },
+  {
+    "id": "lft-art-082-089",
+    "matter": "salario",
+    "subMatter": "definicion_calculo",
+    "article": "Arts. 82-89 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Salario: definición, integración y base de cálculo",
+    "text": "Art. 82: Salario es la retribución que debe pagar el patrón al trabajador por su trabajo. Art. 84: El salario se integra con los pagos hechos en efectivo por cuota diaria, gratificaciones, percepciones, habitación, primas, comisiones, prestaciones en especie y cualquier otra cantidad o prestación que se entregue al trabajador. Art. 85: El salario mínimo no puede ser inferior al salario mínimo general vigente. Art. 89: Para determinar el monto de las indemnizaciones que deban pagarse a los trabajadores, se tomará como base el salario diario que perciba el trabajador al momento de originar el derecho. Si el salario es variable, se tomará el promedio de los últimos 365 días. SALARIO INTEGRADO = salario base diario + (aguinaldo + vacaciones + prima vacacional + otras prestaciones) / 365.",
+    "keywords": ["salario", "salario integrado", "cuota diaria", "gratificacion", "percepciones", "comisiones", "prestaciones", "calculo indemnizacion", "salario variable", "promedio"]
+  },
+  {
+    "id": "lft-art-087-088",
+    "matter": "prestaciones",
+    "subMatter": "aguinaldo",
+    "article": "Arts. 87-88 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Aguinaldo: mínimo, pago y proporcional",
+    "text": "Art. 87: Los trabajadores tienen derecho a un aguinaldo anual que debe pagarse antes del día 20 de diciembre, equivalente a 15 días de salario por lo menos. Los que no hayan cumplido el año de servicios, independientemente de que se encuentren laborando o no en la fecha de liquidación del aguinaldo, tendrán derecho a que se les pague la parte proporcional del mismo conforme al tiempo que hubieren trabajado. CÁLCULO AGUINALDO PROPORCIONAL = (salario diario × 15 días) × (meses trabajados en el año / 12). Art. 88: Si el patrón no paga el aguinaldo, el trabajador puede reclamar el incumplimiento ante el tribunal laboral.",
+    "keywords": ["aguinaldo", "15 dias", "20 diciembre", "proporcional", "calculo aguinaldo", "navidad", "año servicio", "diciembre"]
+  },
+  {
+    "id": "lft-art-117-131",
+    "matter": "prestaciones",
+    "subMatter": "ptu",
+    "article": "Arts. 117-131 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Participación de Utilidades (PTU)",
+    "text": "Art. 117: Los trabajadores participarán en las utilidades de las empresas. Art. 120: La PTU se calculará sobre la renta gravable conforme a la Ley del ISR. Art. 123: Las empresas deben distribuir la PTU dentro de los 60 días siguientes a la fecha en que deba pagarse el ISR anual (antes del 31 de mayo). Art. 127: Para determinar la PTU se divide la utilidad en dos partes iguales: (1) se distribuye en proporción al número de días trabajados por cada trabajador, (2) la otra mitad en proporción a los salarios devengados. Los trabajadores de confianza participan, pero con tope. Trabajadores de primer año, directores y administradores no participan. El monto máximo de PTU para trabajadores de confianza es el salario del trabajador más alto que no sea de confianza más el 20%.",
+    "keywords": ["ptu", "utilidades", "reparto utilidades", "ganancias", "renta gravable", "60 dias", "mayo", "dias trabajados", "salarios devengados"]
+  },
+  {
+    "id": "lft-art-123-133",
+    "matter": "general",
+    "subMatter": "obligaciones_patron",
+    "article": "Arts. 132-133 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Obligaciones y prohibiciones del patrón",
+    "text": "Art. 132 (obligaciones del patrón): I. Cumplir las disposiciones de las normas de trabajo; III. Proporcionar capacitación; IV. Expedir constancias de empleo; V. Proporcionar herramientas y útiles de trabajo; VIII. Proporcionar habitación cómoda e higiénica cuando sea necesario. Art. 133 (prohibiciones): I. Negarse a aceptar trabajadores por razón de edad, sexo, embarazo, credo religioso, doctrina política o condición social; II. Exigir que los trabajadores compren artículos en tienda del patrón; IV. Obligar a trabajar horas extra sin el pago correspondiente; V. Exigir o aceptar dinero de los trabajadores como gratificación para ser admitidos en el trabajo.",
+    "keywords": ["obligaciones patron", "prohibiciones patron", "herramientas", "constancia empleo", "discriminacion", "acoso", "horas extra obligatorias"]
+  },
+  {
+    "id": "lft-art-134-135",
+    "matter": "general",
+    "subMatter": "obligaciones_trabajador",
+    "article": "Arts. 134-135 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Obligaciones y prohibiciones del trabajador",
+    "text": "Art. 134 (obligaciones del trabajador): I. Cumplir el contrato de trabajo con la intensidad, cuidado y esmero apropiados; II. Observar las medidas preventivas e higiénicas que dicten las autoridades; III. Desempeñar el servicio bajo la dirección del patrón; V. Ejecutar el trabajo con la diligencia debida; X. Poner en conocimiento del patrón las enfermedades contagiosas. Art. 135 (prohibiciones): I. Ejecutar actos que pongan en peligro la seguridad propia o de sus compañeros; II. Faltar al trabajo sin causa justificada; IV. Hacer colectas en el establecimiento; VII. Presentarse al trabajo en estado de embriaguez.",
+    "keywords": ["obligaciones trabajador", "prohibiciones trabajador", "diligencia", "inasistencias", "embriaguez", "seguridad"]
+  },
+  {
+    "id": "lft-art-162",
+    "matter": "prestaciones",
+    "subMatter": "prima_antiguedad",
+    "article": "Art. 162 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Prima de antigüedad",
+    "text": "Los trabajadores de planta tienen derecho a una prima de antigüedad de doce días de salario por cada año de servicios. La prima de antigüedad se paga en los siguientes casos: I. Voluntariamente, a los trabajadores que se separen del trabajo; II. A los trabajadores que sean separados de su empleo (despido); III. A los familiares del trabajador que fallezca. Para calcular la prima de antigüedad, el salario diario no puede ser inferior al salario mínimo, ni puede ser superior al doble del salario mínimo general vigente en el área geográfica. CÁLCULO: Prima antigüedad = (años trabajados) × 12 × min(salario diario, 2 × salario mínimo diario). Para los trabajadores que se retiren voluntariamente sin causa justificable solo tienen derecho si tienen 15 o más años de servicio.",
+    "keywords": ["prima antiguedad", "12 dias", "años servicio", "separacion", "despido", "retiro voluntario", "15 años", "calculo prima", "salario minimo", "tope salario"]
+  },
+  {
+    "id": "lft-art-170",
+    "matter": "maternidad",
+    "subMatter": "derechos_maternidad",
+    "article": "Art. 170 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Maternidad y lactancia: derechos de las trabajadoras",
+    "text": "Las madres trabajadoras tienen derecho a: I. Durante el embarazo no realizar trabajos que exijan esfuerzo considerable y signifiquen un peligro para su salud; II. Descanso de 6 semanas antes del parto y 6 semanas después (12 semanas totales); III. Los períodos de descanso se computan como tiempo trabajado; IV. Percibir su salario íntegro durante el descanso; V. Conservar su empleo y los derechos adquiridos; VI. En el período de lactancia, dos reposos extraordinarios de media hora por día para amamantar a sus hijos; VII. Licencia por adopción. Despedir a una trabajadora embarazada sin causa justificada es un acto discriminatorio penalizado con el doble de indemnización.",
+    "keywords": ["maternidad", "embarazo", "incapacidad maternidad", "lactancia", "6 semanas", "12 semanas", "descanso parto", "trabajadora embarazada", "despido embarazada", "amamantar"]
+  },
+  {
+    "id": "lft-art-472-491",
+    "matter": "riesgo_trabajo",
+    "subMatter": "accidente_enfermedad",
+    "article": "Arts. 472-491 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Riesgos de trabajo: accidentes y enfermedades profesionales",
+    "text": "Art. 472: Riesgos de trabajo son los accidentes y enfermedades a que están expuestos los trabajadores en ejercicio o con motivo del trabajo. Art. 473: Accidente de trabajo es toda lesión orgánica o perturbación funcional causada en el acto o con motivo del trabajo. Incluye los accidentes de trayecto (de camino al trabajo). Art. 474: Enfermedad de trabajo es todo estado patológico derivado de la acción continuada de una causa que tiene su origen o motivo en el trabajo. Art. 487: Los trabajadores que sufran un riesgo de trabajo tendrán derecho a: I. Asistencia médica y quirúrgica; II. Rehabilitación; III. Hospitalización; IV. Medicamentos y materiales de curación; V. Pago del salario íntegro durante incapacidad temporal; VI. Indemnización fijada en esta Ley.",
+    "keywords": ["accidente trabajo", "accidente trayecto", "enfermedad profesional", "riesgo trabajo", "incapacidad", "indemnizacion accidente", "asistencia medica", "camino trabajo"]
+  },
+  {
+    "id": "lft-art-500-502",
+    "matter": "riesgo_trabajo",
+    "subMatter": "indemnizacion_riesgo",
+    "article": "Arts. 500-502 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Indemnización por riesgo de trabajo: incapacidad y muerte",
+    "text": "Art. 500: Incapacidad temporal (el trabajador puede seguir trabajando): pago del salario íntegro por el tiempo que dure la incapacidad. Art. 501: Incapacidad permanente parcial: indemnización equivalente al porcentaje de la incapacidad × 1095 días de salario (3 años). Art. 502: Muerte del trabajador: indemnización equivalente a 730 días de salario (2 años) sin deducir la indemnización recibida durante la enfermedad. Además, el patrón debe pagar los gastos de funeral (hasta un mes de salario mínimo). Si el riesgo es por culpa del patrón, las indemnizaciones aumentan hasta un 25%. Nota: si el trabajador está asegurado en el IMSS, el IMSS cubre las prestaciones médicas y económicas.",
+    "keywords": ["indemnizacion accidente", "incapacidad temporal", "incapacidad permanente", "muerte trabajo", "1095 dias", "730 dias", "3 años", "2 años", "culpa patron", "imss riesgo"]
+  },
+  {
+    "id": "lft-art-516-522",
+    "matter": "procedimiento",
+    "subMatter": "prescripcion",
+    "article": "Arts. 516-522 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Prescripción: plazos para demandar",
+    "text": "Art. 516: Las acciones laborales prescriben en 2 años a partir del día siguiente al en que se genere el derecho. Art. 518: Las acciones por horas extra, prima dominical, vacaciones, prima vacacional y aguinaldo prescriben en 2 años. Art. 519: Las acciones por indemnización por riesgo de trabajo prescriben en 2 años. Las acciones por muerte del trabajador prescriben en 2 años contados desde el día siguiente al de la muerte. Art. 521: La prescripción se interrumpe por la simple presentación de la demanda o de cualquier promoción ante las autoridades. IMPORTANTE: Si el trabajador fue despedido, tiene 2 años para demandar indemnización, salarios vencidos y demás prestaciones derivadas del despido.",
+    "keywords": ["prescripcion", "plazo", "2 años", "demandar", "caducidad", "limite tiempo", "demanda", "cuando demandar", "plazo demanda", "interrupcion prescripcion"]
+  },
+  {
+    "id": "lft-art-539-600",
+    "matter": "procedimiento",
+    "subMatter": "conciliacion",
+    "article": "Arts. 684-A LFT / CFCRL",
+    "law": "Ley Federal del Trabajo",
+    "title": "Proceso laboral: conciliación y demanda",
+    "text": "Desde la reforma de 2019 (en vigor progresivamente hasta 2022), el proceso laboral tiene 3 etapas: 1. CONCILIACIÓN PREJUDICIAL obligatoria ante el Centro Federal de Conciliación y Registro Laboral (CFCRL) o los centros estatales. El trabajador debe agotar la conciliación antes de demandar. Duración máxima: 45 días hábiles. 2. DEMANDA ante el Tribunal Laboral si no hay acuerdo en conciliación. 3. AUDIENCIA DE JUICIO. El trabajador no necesita abogado para la conciliación pero se recomienda tenerlo para el juicio. En conciliación, el acuerdo es obligatorio si ambas partes firman. CFCRL: 01 800 911 7877.",
+    "keywords": ["conciliacion", "demanda", "tribunal laboral", "cfcrl", "proceso laboral", "juicio", "reforma 2019", "pasos demandar", "junta conciliacion", "centro conciliacion"]
+  },
+  {
+    "id": "lft-art-imss-general",
+    "matter": "imss",
+    "subMatter": "obligacion_aseguramiento",
+    "article": "Art. 12 LSS + Art. 132 LFT",
+    "law": "Ley del Seguro Social + Ley Federal del Trabajo",
+    "title": "IMSS: obligación del patrón y derechos del trabajador",
+    "text": "Art. 12 LSS: Son sujetos de aseguramiento los trabajadores que presten servicios en forma permanente o eventual. Art. 132 LFT: Es obligación del patrón inscribir al trabajador en el IMSS desde el primer día de trabajo. El registro debe hacerse máximo al día siguiente de iniciada la relación laboral. Trabajar sin IMSS es una violación a la ley. El trabajador puede demandar al patrón ante el IMSS para que le registre y pague las cuotas omitidas. El IMSS puede sancionar al patrón con multa y cobrar las cuotas omitidas retroactivamente hasta 5 años. Si el trabajador sufre un accidente y no está en el IMSS, el patrón es responsable directo de cubrir todos los gastos médicos e indemnización.",
+    "keywords": ["imss", "seguro social", "inscripcion imss", "registro", "sin imss", "cuotas", "obligacion patron", "afiliacion", "primer dia trabajo", "alta imss"]
+  },
+  {
+    "id": "lft-art-imss-semanas",
+    "matter": "imss",
+    "subMatter": "semanas_cotizadas",
+    "article": "Arts. 154-162 LSS",
+    "law": "Ley del Seguro Social",
+    "title": "Semanas cotizadas: pensión, retiro e incapacidad IMSS",
+    "text": "El número de semanas cotizadas determina los derechos en el IMSS: PENSIÓN POR INVALIDEZ: requiere mínimo 250 semanas cotizadas. PENSIÓN DE VEJEZ (AFORE): 1,000 semanas cotizadas (aprox. 20 años) para acceder al mínimo garantizado. INCAPACIDAD TEMPORAL: no requiere mínimo de semanas si el trabajador está dado de alta. INCAPACIDAD PERMANENTE: sí requiere cierto número de semanas. El trabajador puede consultar sus semanas cotizadas en Mi IMSS Digital (app) con su NSS (Número de Seguridad Social). Si hay periodos sin cotizar porque el patrón no lo reportó, el trabajador puede denunciarlo al IMSS.",
+    "keywords": ["semanas cotizadas", "nss", "numero seguridad social", "pension", "afore", "retiro", "250 semanas", "1000 semanas", "incapacidad", "mi imss", "consultar imss"]
+  },
+  {
+    "id": "lft-const-art123",
+    "matter": "general",
+    "subMatter": "derechos_fundamentales",
+    "article": "Art. 123 Constitucional",
+    "law": "Constitución Política de los Estados Unidos Mexicanos",
+    "title": "Derechos fundamentales del trabajador (Art. 123 CPEUM)",
+    "text": "El Art. 123 de la Constitución establece los derechos mínimos del trabajador: A) Jornada máxima de 8 horas diurnas, 7 nocturnas; B) Descanso semanal; C) Vacaciones; D) Salario mínimo suficiente; E) Igual salario por igual trabajo; F) Aguinaldo; G) Habitación y prestaciones; H) PTU (participación en utilidades); I) IMSS; J) Protección al salario; K) Derecho de huelga; L) Seguridad e higiene en el trabajo; M) Indemnización por despido injustificado. Ningún contrato puede estipular condiciones inferiores a las establecidas en la Constitución y la LFT. Las renuncias a derechos son nulas de pleno derecho.",
+    "keywords": ["constitucion", "articulo 123", "derechos trabajador", "derechos fundamentales", "minimo", "irrenunciable", "nulo", "proteccion"]
+  },
+  {
+    "id": "lft-art-nulidad-renuncias",
+    "matter": "general",
+    "subMatter": "nulidad",
+    "article": "Art. 5 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Nulidad de cláusulas contrarias a la ley",
+    "text": "Art. 5: Las disposiciones de esta Ley son de orden público, por lo que no producirán efecto legal, ni impedirán el goce y el ejercicio de los derechos, sean escritas o verbales, las estipulaciones que establezcan: I. Trabajos para niños menores de 15 años; II. Una jornada inhumana; III. Un salario que no sea remunerador; IV. Un plazo mayor de una semana para el pago del salario a obreros; V. Renuncia a cualquier derecho establecido por la ley o a una indemnización; VI. Que el trabajador renuncie al ejercicio de sus derechos por parte del patrón. IMPORTANTE: Si firmaste una renuncia bajo presión o engaño, puede ser anulada. Si firmas un finiquito con errores u omisiones de prestaciones, puedes reclamar la diferencia.",
+    "keywords": ["nulidad", "renuncia derechos", "irrenunciable", "clausa nula", "finiquito", "bajo presion", "firme renuncia", "contrato ilegal", "derechos irrenunciables"]
+  },
+  {
+    "id": "lft-art-trabajo-domicilio",
+    "matter": "general",
+    "subMatter": "home_office",
+    "article": "Arts. 311-330 LFT / NOM-037-STPS-2023",
+    "law": "Ley Federal del Trabajo + NOM-037",
+    "title": "Trabajo a domicilio (Home Office)",
+    "text": "Reforma 2021 (DOF 11-ene-2021): Art. 311: Las personas trabajadoras bajo el modelo de teletrabajo tienen los mismos derechos que los trabajadores presenciales. El patrón está obligado a: proporcionar el equipo (computadora, silla ergonómica, conexión); pagar los gastos de internet y electricidad proporcionales; respetar el derecho a la desconexión digital fuera del horario laboral. NOM-037-STPS-2023: establece las condiciones de seguridad e higiene para el trabajo remoto. El cambio a modalidad presencial debe negociarse. La negativa del trabajador a regresar a presencial no puede ser causa de rescisión, salvo que el contrato original era presencial.",
+    "keywords": ["home office", "teletrabajo", "trabajo remoto", "internet", "equipo", "computadora", "desconexion digital", "NOM 037", "regreso presencial", "gastos home office"]
+  },
+  {
+    "id": "lft-art-plataformas",
+    "matter": "general",
+    "subMatter": "plataformas_digitales",
+    "article": "Art. 330-A LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Trabajo en plataformas digitales (Uber, Rappi, etc.)",
+    "text": "Art. 330-A (adicionado DOF 23-abr-2021): Las personas que prestan servicios a través de plataformas digitales de reparto o transporte tienen derecho a: I. Determinar su tiempo de conexión sin penalización; II. No estar obligados a conectarse en horarios determinados; III. Conocer su remuneración antes de aceptar el servicio; IV. Seguridad social (aunque la modalidad puede variar); V. No discriminación. La relación es considerada 'trabajo a través de plataformas digitales' y tiene sus propias reglas. Si la plataforma impone condiciones de subordinación (horarios fijos, uniformes, exclusividad), puede existir relación laboral plena y el trabajador puede demandar prestaciones completas.",
+    "keywords": ["plataformas digitales", "uber", "rappi", "delivery", "chofer", "repartidor", "gig economy", "relacion laboral plataformas", "seguridad social plataformas"]
+  },
+  {
+    "id": "lft-art-hostigamiento",
+    "matter": "general",
+    "subMatter": "acoso_sexual",
+    "article": "Arts. 3-Bis y 132-XIII LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Hostigamiento y acoso sexual en el trabajo",
+    "text": "Art. 3-Bis: Para efectos de esta Ley se entiende por: a) Hostigamiento sexual: el ejercicio del poder en una relación de subordinación real (jefe-subordinado) que se expresa en conductas verbales, físicas o ambas, relacionadas con la sexualidad de connotación lasciva; b) Acoso sexual: una forma de violencia con connotación lasciva en la que, si bien no existe la subordinación, hay un ejercicio abusivo del poder. Art. 132-XIII: Es obligación del patrón implementar protocolos de prevención e investigación. El patrón es responsable de los actos de hostigamiento que cometan sus trabajadores. La víctima puede rescindir el contrato sin responsabilidad (Art. 51-II) y recibir la indemnización completa del Art. 50.",
+    "keywords": ["hostigamiento", "acoso sexual", "abuso sexual", "violencia trabajo", "protocolo", "denunciar jefe", "rescision acoso", "indemnizacion acoso", "subordinacion"]
+  },
+  {
+    "id": "lft-calculo-liquidacion-ejemplo",
+    "matter": "terminacion",
+    "subMatter": "ejemplo_calculo",
+    "article": "Arts. 49-50-162-80-87 LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Ejemplo de cálculo de liquidación completa",
+    "text": "LIQUIDACIÓN COMPLETA por despido injustificado (Arts. 49-50): Se calcula con el salario diario integrado. COMPONENTES: (1) 3 meses de salario = salario diario × 90; (2) 20 días por año = salario diario × 20 × años completos; (3) Fracción de año: 20 días × (meses/12); (4) Aguinaldo proporcional = salario diario × 15 × (meses del año en curso / 12); (5) Vacaciones proporcionales = salario diario × días vacaciones × (fracción del año); (6) Prima vacacional = vacaciones proporcionales × 25%; (7) Prima de antigüedad = min(salario diario, 2× SMG) × 12 × años; (8) PTU pendiente del ejercicio anterior. TOTAL = suma de los 7 conceptos. NOTA: El salario mínimo general 2025 es $278.80 MXN/día.",
+    "keywords": ["calculo liquidacion", "ejemplo liquidacion", "formula liquidacion", "cuanto me corresponde", "cuanto me deben", "liquidacion completa", "componentes liquidacion", "salario minimo 2025"]
+  },
+  {
+    "id": "lft-carta-trabajo",
+    "matter": "general",
+    "subMatter": "constancias",
+    "article": "Art. 132-VIII LFT",
+    "law": "Ley Federal del Trabajo",
+    "title": "Constancias de trabajo y carta de recomendación",
+    "text": "Art. 132-VIII: Es obligación del patrón expedir cada quince días, a solicitud del trabajador, una constancia escrita del número de días trabajados y del salario percibido. Art. 132-XXIII: Es obligación del patrón hacer las deducciones que soliciten los trabajadores para el pago de sus deudas contraídas con el IMSS, el INFONAVIT y las instituciones de crédito. Art. 804: El patrón está obligado a conservar y exhibir en juicio los documentos que señala esta Ley, durante 2 años: contratos colectivos e individuales, listas de raya, controles de asistencia, comprobantes de pago de participación de utilidades y nóminas. Si el patrón no exhibe estos documentos en juicio, se presume cierto lo que el trabajador afirme.",
+    "keywords": ["constancia trabajo", "carta trabajo", "comprobante salario", "carta recomendacion", "documentos", "obligacion exhibir", "nomina", "recibo pago"]
+  }
+]
