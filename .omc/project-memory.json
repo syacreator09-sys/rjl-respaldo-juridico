@@ -1,0 +1,28 @@
+﻿{
+  "project": {
+    "name": "",
+    "repository_root": "",
+    "primary_language": "",
+    "runtime": "",
+    "package_manager": ""
+  },
+  "architecture": {
+    "entrypoints": [],
+    "core_modules": [],
+    "external_integrations": []
+  },
+  "working_agreements": [
+    "Keep diffs small and reversible",
+    "Prefer deletion over addition",
+    "No new dependencies without explicit approval",
+    "Run lint, typecheck, and tests after changes"
+  ],
+  "current_focus": {
+    "goal": "",
+    "active_branch": "",
+    "active_plan": "",
+    "next_milestone": ""
+  },
+  "known_risks": [],
+  "last_updated": ""
+}

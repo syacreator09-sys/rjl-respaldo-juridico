@@ -105,3 +105,20 @@ Scripts adicionales:
 ## Validacion recomendada
 
 Consulta [docs/VALIDACION-FINAL.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/VALIDACION-FINAL.md) para el checklist completo de QA, deploy y smoke test.
+
+## Rediseño para Lovable
+
+El rediseño objetivo del producto ya esta documentado como spec ejecutable para Lovable en:
+
+- [docs/lovable/README.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/README.md)
+- [docs/lovable/RJL-LOVABLE-SPEC.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/RJL-LOVABLE-SPEC.md)
+- [docs/lovable/21ST-MATRIX.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/21ST-MATRIX.md)
+- [docs/lovable/COUNCIL-CODEX.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/COUNCIL-CODEX.md)
+- [docs/lovable/PROMPT-MAESTRO-LOVABLE.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/PROMPT-MAESTRO-LOVABLE.md)
+- [.claude/skills/codex-llm-council-rjl/SKILL.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/.claude/skills/codex-llm-council-rjl/SKILL.md)
+
+Comando operativo acordado para deliberacion:
+
+```text
+/council --preset lovable "<decision de arquitectura o UX>"
+```

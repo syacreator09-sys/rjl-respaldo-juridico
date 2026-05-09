@@ -32,7 +32,9 @@ export async function checkRateLimit(
       })
       const { success, remaining, reset } = await ratelimit.limit(identifier)
       return { allowed: success, remaining, reset }
-    } catch {}
+    } catch (error) {
+      console.error('[rjl:rate-limit] Redis unavailable, falling back to in-memory:', error instanceof Error ? error.message : String(error))
+    }
   }
 
   // Fallback: in-memory

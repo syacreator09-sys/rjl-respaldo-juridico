@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { ClientChatView } from '@/components/chat/ClientChatView'
+import { ActionButton, PageIntro, SectionFrame } from '@/components/ui/rjl-primitives'
 import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 interface ChatMessageRow {
   role: 'user' | 'assistant'
@@ -32,19 +32,16 @@ export default async function ClienteChatPage() {
   ])
 
   return (
-    <div style={{ background: 'var(--navy)', minHeight: '100vh', padding: '1.5rem' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <Link href="/cliente" className="text-xs mb-4 block" style={{ color: 'var(--text-dim)' }}>
-          ← Panel cliente
-        </Link>
-        <h1
-          className="text-2xl font-bold mb-6"
-          style={{ color: 'var(--gold-light)', fontFamily: 'Cormorant Garamond, serif' }}
-        >
-          Chat premium
-        </h1>
+    <div className="space-y-6">
+      <PageIntro
+        eyebrow="Cliente · Asesor virtual"
+        title="Chat completo del expediente"
+        description="Vista expandida para revisar el historial premium completo."
+        action={<ActionButton href="/cliente" variant="secondary">Volver al resumen</ActionButton>}
+      />
+      <SectionFrame title="Conversacion premium" description="El asistente responde con contexto de tu caso activo.">
         <ClientChatView caseId={caseRow?.id} initialMessages={history ?? []} />
-      </div>
+      </SectionFrame>
     </div>
   )
 }

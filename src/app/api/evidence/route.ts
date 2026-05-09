@@ -1,18 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import type { Database } from '@/lib/supabase/types'
+import { EvidenceUploadSchema } from '@/lib/validations/chat'
 
 export const runtime = 'nodejs'
-
-const ALLOWED_CATEGORIES = new Set([
-  'entrada_trabajo',
-  'salida_trabajo',
-  'contrato',
-  'recibo_pago',
-  'gastos_medicos',
-  'cambio_domicilio',
-  'otro',
-])
 
 function sanitizeFileName(fileName: string): string {
   return fileName.replace(/[^a-zA-Z0-9._-]/g, '_')
@@ -30,19 +21,26 @@ export async function POST(req: NextRequest) {
 
   const fd = await req.formData()
   const file = fd.get('file') as File | null
-  const category = fd.get('category') as string | null
-  const caseId = fd.get('case_id') as string | null
-  const gpsLat = fd.get('gps_lat') ? parseFloat(fd.get('gps_lat') as string) : null
-  const gpsLng = fd.get('gps_lng') ? parseFloat(fd.get('gps_lng') as string) : null
-  const gpsAccuracy = fd.get('gps_accuracy') ? parseFloat(fd.get('gps_accuracy') as string) : null
+  const parsed = EvidenceUploadSchema.safeParse({
+    caseId: fd.get('case_id'),
+    category: fd.get('category'),
+    gpsLat: fd.get('gps_lat') ? Number(fd.get('gps_lat')) : null,
+    gpsLng: fd.get('gps_lng') ? Number(fd.get('gps_lng')) : null,
+    gpsAccuracy: fd.get('gps_accuracy') ? Number(fd.get('gps_accuracy')) : null,
+  })
 
-  if (!file || !category || !caseId) {
-    return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
+  // device_time from client (optional, ISO string) — server_time via DB DEFAULT is authoritative
+  const deviceTimeRaw = fd.get('device_time')
+  const deviceTime = typeof deviceTimeRaw === 'string' && deviceTimeRaw ? deviceTimeRaw : null
+
+  if (!file || !parsed.success) {
+    return NextResponse.json(
+      { error: 'Invalid evidence payload', details: parsed.success ? undefined : parsed.error.flatten() },
+      { status: 400 },
+    )
   }
 
-  if (!ALLOWED_CATEGORIES.has(category)) {
-    return NextResponse.json({ error: 'Invalid category' }, { status: 400 })
-  }
+  const { caseId, category, gpsLat, gpsLng, gpsAccuracy } = parsed.data
 
   const { data: ownedCase } = await supabase
     .from('cases')
@@ -75,7 +73,7 @@ export async function POST(req: NextRequest) {
     gps_lat: gpsLat,
     gps_lng: gpsLng,
     gps_accuracy: gpsAccuracy,
-    device_time: new Date().toISOString(),
+    device_time: deviceTime,
   } as Database['public']['Tables']['evidence']['Insert'])
 
   if (dbError) {

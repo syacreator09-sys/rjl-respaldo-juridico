@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient, createClient } from '@/lib/supabase/server'
-import { generateExpedienteText } from '@/lib/generate-expediente-pdf'
+import { generateExpedientePdf } from '@/lib/generate-expediente-pdf'
 import type { Database } from '@/lib/supabase/types'
 
 export const dynamic = 'force-dynamic'
@@ -88,7 +88,7 @@ export async function GET(
     ? caseRow.case_data[0] ?? null
     : caseRow.case_data
 
-  const text = generateExpedienteText({
+  const pdf = generateExpedientePdf({
     cliente: {
       nombre: clientProfile?.full_name ?? clientEmail ?? 'Cliente',
       email: clientEmail,
@@ -104,10 +104,12 @@ export async function GET(
     evidencias: evidencias ?? [],
   })
 
-  return new Response(text, {
+  const pdfBody = new Blob([Uint8Array.from(pdf)], { type: 'application/pdf' })
+
+  return new Response(pdfBody, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Content-Disposition': `attachment; filename="expediente-rjl-${caseId.slice(0, 8)}.txt"`,
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename="expediente-rjl-${caseId.slice(0, 8)}.pdf"`,
     },
   })
 }

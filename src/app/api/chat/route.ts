@@ -36,8 +36,25 @@ interface CaseContextRow {
   } | null
 }
 
+function createTextStream(text: string) {
+  const encoder = new TextEncoder()
+  const chunks = text.match(/.{1,120}(\s|$)/g) ?? [text]
+
+  return new ReadableStream({
+    async start(controller) {
+      for (const chunk of chunks) {
+        controller.enqueue(encoder.encode(chunk))
+        await new Promise((resolve) => setTimeout(resolve, 8))
+      }
+      controller.close()
+    },
+  })
+}
+
 export async function POST(req: NextRequest) {
+  // x-vercel-forwarded-for is set by Vercel's edge and cannot be spoofed by clients
   const ip =
+    req.headers.get('x-vercel-forwarded-for') ??
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     req.headers.get('x-real-ip') ??
     'unknown'
@@ -106,12 +123,21 @@ export async function POST(req: NextRequest) {
   const chatHistory = history.slice(0, -1) as Array<{ role: 'user' | 'assistant'; content: string }>
   const tier = (!!process.env.ANTHROPIC_API_KEY && hasSub) ? 'premium' : 'free'
 
-  const { reply: assistantText } = await routeChat({
-    tier,
-    userMessage,
-    history: chatHistory,
-    caseData: caseRow?.case_data ?? undefined,
-  })
+  let assistantText = ''
+
+  try {
+    const response = await routeChat({
+      tier,
+      userMessage,
+      history: chatHistory,
+      caseData: caseRow?.case_data ?? undefined,
+    })
+    assistantText = response.reply
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'AI provider unavailable.'
+    const status = message.includes('ANTHROPIC_API_KEY') ? 503 : 500
+    return NextResponse.json({ error: message }, { status })
+  }
 
   if (user) {
     const last = history.at(-1)
@@ -126,7 +152,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return new Response(assistantText, {
+  return new Response(createTextStream(assistantText), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   })
 }

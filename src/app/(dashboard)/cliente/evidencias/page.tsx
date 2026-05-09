@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import { EvidenceUpload } from '@/components/evidence/EvidenceUpload'
 import { EvidenceVault } from '@/components/evidence/EvidenceVault'
+import { ActionButton, EmptyState, PageIntro, SectionFrame } from '@/components/ui/rjl-primitives'
 import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 export default async function ClienteEvidenciasPage() {
   const supabase = await createClient()
@@ -20,40 +20,29 @@ export default async function ClienteEvidenciasPage() {
     .maybeSingle() as unknown as { data: { id: string } | null }
 
   return (
-    <div style={{ background: 'var(--navy)', minHeight: '100vh', padding: '1.5rem' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <Link href="/cliente" className="text-xs mb-4 block" style={{ color: 'var(--text-dim)' }}>
-          ← Panel cliente
-        </Link>
-        <h1
-          className="text-2xl font-bold mb-6"
-          style={{ color: 'var(--gold-light)', fontFamily: 'Cormorant Garamond, serif' }}
-        >
-          Mis evidencias
-        </h1>
-        {!caseRow ? (
-          <div
-            className="p-6 rounded-2xl border text-center"
-            style={{ background: 'var(--navy-card)', borderColor: 'rgba(200,168,75,0.15)' }}
-          >
-            <p className="text-sm" style={{ color: 'var(--cream)' }}>
-              Primero crea tu expediente laboral para poder guardar evidencias.
-            </p>
-            <Link
-              href="/cliente/caso"
-              className="inline-block mt-4 px-4 py-2 rounded-xl text-sm font-medium"
-              style={{ background: 'linear-gradient(135deg,var(--gold),var(--gold-dim))', color: 'var(--navy)' }}
-            >
-              Crear expediente
-            </Link>
-          </div>
-        ) : (
-          <div className="grid lg:grid-cols-[360px_1fr] gap-6">
+    <div className="space-y-6">
+      <PageIntro
+        eyebrow="Cliente · Evidencias"
+        title="Boveda completa"
+        description="Sube nuevos archivos y revisa el historial cronologico de pruebas vinculadas a tu expediente."
+        action={<ActionButton href="/cliente" variant="secondary">Volver al resumen</ActionButton>}
+      />
+      {!caseRow ? (
+        <EmptyState
+          title="Primero crea tu expediente laboral."
+          description="Sin un caso activo no podemos sellar ni ordenar evidencia juridica."
+          action={<ActionButton href="/cliente/caso">Crear expediente</ActionButton>}
+        />
+      ) : (
+        <div className="grid gap-6 xl:grid-cols-[360px_1fr]">
+          <SectionFrame title="Subir evidencia" description="Fotos, recibos, documentos y capturas con sello de tiempo.">
             <EvidenceUpload caseId={caseRow.id} doneHref="/cliente/evidencias" />
+          </SectionFrame>
+          <SectionFrame title="Historial cronologico" description="La evidencia es inmutable una vez registrada.">
             <EvidenceVault caseId={caseRow.id} />
-          </div>
-        )}
-      </div>
+          </SectionFrame>
+        </div>
+      )}
     </div>
   )
 }

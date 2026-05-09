@@ -91,3 +91,86 @@ export function generateExpedienteText(data: ExpedienteData): string {
 
   return lines.filter((line) => line !== '').join('\n')
 }
+
+function escapePdfText(value: string) {
+  return value.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)')
+}
+
+function normalizePdfText(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\x20-\x7E]/g, '')
+}
+
+export function generateExpedientePdf(data: ExpedienteData): Uint8Array {
+  const sourceText = generateExpedienteText(data)
+  const lines = sourceText.split('\n').map((line) => escapePdfText(normalizePdfText(line)))
+  const linesPerPage = 42
+  const pages = []
+
+  for (let index = 0; index < lines.length; index += linesPerPage) {
+    pages.push(lines.slice(index, index + linesPerPage))
+  }
+
+  let objectIndex = 1
+  const catalogId = objectIndex++
+  const pagesId = objectIndex++
+  const fontId = objectIndex++
+  const pageDescriptors: Array<{ pageId: number; contentId: number; content: string }> = []
+
+  for (const pageLines of pages) {
+    const pageId = objectIndex++
+    const contentId = objectIndex++
+    const content = [
+      'BT',
+      '/F1 11 Tf',
+      '50 790 Td',
+      '14 TL',
+      ...pageLines.map((line) => `(${line}) Tj T*`),
+      'ET',
+    ].join('\n')
+    pageDescriptors.push({ pageId, contentId, content })
+  }
+
+  const objects: Array<{ id: number; body: string }> = [
+    { id: catalogId, body: `<< /Type /Catalog /Pages ${pagesId} 0 R >>` },
+    {
+      id: pagesId,
+      body: `<< /Type /Pages /Count ${pageDescriptors.length} /Kids [${pageDescriptors.map((page) => `${page.pageId} 0 R`).join(' ')}] >>`,
+    },
+    { id: fontId, body: '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>' },
+  ]
+
+  for (const page of pageDescriptors) {
+    objects.push({
+      id: page.pageId,
+      body: `<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 ${fontId} 0 R >> >> /Contents ${page.contentId} 0 R >>`,
+    })
+    const contentLength = Buffer.byteLength(page.content, 'utf8')
+    objects.push({
+      id: page.contentId,
+      body: `<< /Length ${contentLength} >>\nstream\n${page.content}\nendstream`,
+    })
+  }
+
+  let pdf = '%PDF-1.4\n'
+  const offsets: number[] = [0]
+
+  for (const object of objects) {
+    offsets[object.id] = Buffer.byteLength(pdf, 'utf8')
+    pdf += `${object.id} 0 obj\n${object.body}\nendobj\n`
+  }
+
+  const xrefOffset = Buffer.byteLength(pdf, 'utf8')
+  pdf += `xref\n0 ${objects.length + 1}\n`
+  pdf += '0000000000 65535 f \n'
+
+  for (let id = 1; id <= objects.length; id += 1) {
+    const offset = offsets[id] ?? 0
+    pdf += `${offset.toString().padStart(10, '0')} 00000 n \n`
+  }
+
+  pdf += `trailer\n<< /Size ${objects.length + 1} /Root ${catalogId} 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`
+  return Buffer.from(pdf, 'utf8')
+}

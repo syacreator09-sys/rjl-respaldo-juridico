@@ -82,3 +82,20 @@ La validacion final depende de probar:
 - checkout y webhook Stripe real
 - Storage real para evidencias
 - acceso por rol con usuarios reales
+
+## Paquete Lovable
+
+La implementacion del rediseño objetivo para Lovable vive en:
+
+- [docs/lovable/README.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/README.md)
+- [docs/lovable/RJL-LOVABLE-SPEC.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/RJL-LOVABLE-SPEC.md)
+- [docs/lovable/21ST-MATRIX.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/21ST-MATRIX.md)
+- [docs/lovable/COUNCIL-CODEX.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/COUNCIL-CODEX.md)
+- [docs/lovable/PROMPT-MAESTRO-LOVABLE.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/docs/lovable/PROMPT-MAESTRO-LOVABLE.md)
+- [.claude/skills/codex-llm-council-rjl/SKILL.md](/C:/Users/shedy/Desktop/chatbot-juridico-ai/.claude/skills/codex-llm-council-rjl/SKILL.md)
+
+Comando operativo para consejo interno:
+
+```text
+/council --preset lovable "<decision de arquitectura o UX>"
+```

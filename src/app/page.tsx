@@ -3,85 +3,59 @@ import { PublicChatView } from '@/components/chat/PublicChatView'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0A1628]">
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-        <span className="font-serif text-xl text-[#C8A84B] font-semibold tracking-wide">RJL</span>
-        <div className="flex gap-3">
-          <Link href="/login"
-            className="px-4 py-1.5 text-sm text-[#F2EDE0]/70 hover:text-[#F2EDE0] transition-colors">
-            Iniciar sesión
-          </Link>
-          <Link href="/register"
-            className="px-4 py-1.5 text-sm bg-[#C8A84B] text-[#0A1628] rounded-lg font-medium hover:bg-[#E5C97A] transition-colors">
-            Registrarse
-          </Link>
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(200,168,75,0.09),_transparent_28%),linear-gradient(180deg,#0A1628_0%,#08101F_100%)]">
+      <nav className="border-b border-white/10">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--gold),var(--gold-dim))] font-serif text-lg font-semibold text-[#0A1628]">
+              RJL
+            </div>
+            <div>
+              <p className="font-serif text-xl text-[#E5C97A]">Respaldo Juridico Laboral</p>
+              <p className="text-xs text-[#F2EDE0]/45">Orientacion laboral mexicana para trabajadores</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <Link href="/login" className="rounded-full border border-white/10 px-4 py-2 text-sm text-[#F2EDE0]/70 transition hover:border-white/20 hover:text-[#F2EDE0]">
+              Iniciar sesion
+            </Link>
+            <Link href="/register" className="rounded-full bg-[#C8A84B] px-4 py-2 text-sm font-medium text-[#0A1628] transition hover:bg-[#E5C97A]">
+              Crear cuenta
+            </Link>
+          </div>
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-16 items-start">
-        {/* Hero */}
-        <div className="space-y-6">
-          <div className="inline-block px-3 py-1 bg-[#C8A84B]/10 border border-[#C8A84B]/30 rounded-full text-[#C8A84B] text-xs font-medium">
-            Asesoría Jurídico-Laboral · México
-          </div>
-          <h1 className="font-serif text-4xl lg:text-5xl text-[#F2EDE0] leading-tight">
-            Conoce tus derechos laborales <span className="text-[#C8A84B]">en segundos</span>
-          </h1>
-          <p className="text-[#F2EDE0]/60 text-lg leading-relaxed">
-            Calcula tu liquidación, finiquito, aguinaldo y vacaciones con la Ley Federal del Trabajo.
-            Guarda evidencias con GPS. Consulta con un asesor real.
-          </p>
+      <section className="mx-auto flex max-w-4xl flex-col items-center px-6 py-14 text-center">
+        <div className="inline-flex items-center rounded-full border border-[#C8A84B]/25 bg-[#C8A84B]/10 px-4 py-1 text-xs uppercase tracking-[0.25em] text-[#E5C97A]">
+          Publico · Mexico
+        </div>
+        <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-tight text-[#F2EDE0] md:text-6xl">
+          Haz una pregunta laboral y entiende tus siguientes pasos con claridad.
+        </h1>
+        <p className="mt-5 max-w-2xl text-base leading-8 text-[#F2EDE0]/62 md:text-lg">
+          Calcula liquidacion, finiquito, vacaciones y riesgos basicos. Si tu caso escala, RJL guarda
+          evidencias con GPS y lo convierte en expediente.
+        </p>
 
-          <div className="grid grid-cols-3 gap-4 pt-4">
-            {[
-              { n: '40M+', l: 'trabajadores en México' },
-              { n: '$200', l: 'MXN/mes plan completo' },
-              { n: '3', l: 'preguntas gratis al día' },
-            ].map(({ n, l }) => (
-              <div key={l} className="bg-[#172240] rounded-xl p-4 text-center">
-                <div className="font-serif text-2xl text-[#C8A84B]">{n}</div>
-                <div className="text-xs text-[#F2EDE0]/50 mt-1">{l}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="space-y-3 text-sm text-[#F2EDE0]/60">
-            {[
-              'Liquidación: 3 meses + 20 días por año + proporcionales',
-              'Bóveda de evidencias con GPS e inmutabilidad legal',
-              'Historial completo de consultas guardado',
-              'Asesor humano asignado para casos complejos',
-            ].map((f) => (
-              <div key={f} className="flex items-center gap-2">
-                <span className="text-[#C8A84B]">✓</span> {f}
-              </div>
-            ))}
-          </div>
-
-          <div className="flex gap-3 pt-2">
-            <Link href="/register"
-              className="px-6 py-3 bg-[#C8A84B] text-[#0A1628] rounded-xl font-semibold hover:bg-[#E5C97A] transition-colors">
-              Crear cuenta gratis
-            </Link>
-            <Link href="/login"
-              className="px-6 py-3 border border-white/20 text-[#F2EDE0]/70 rounded-xl hover:border-white/40 hover:text-[#F2EDE0] transition-colors">
-              Ya tengo cuenta
-            </Link>
-          </div>
+        <div className="mt-6 rounded-full border border-[#C8A84B]/25 bg-[rgba(17,30,53,0.85)] px-5 py-3 text-sm text-[#F2EDE0]/72">
+          La orientacion es informativa y no sustituye asesoria legal personalizada. Casos urgentes o de alto monto deben revisarse con un asesor.
         </div>
 
-        {/* Chat */}
-        <div className="lg:sticky lg:top-8">
-          <p className="text-xs text-[#F2EDE0]/40 mb-3 text-center">
-            Prueba el asistente — 3 consultas gratis, sin registro
-          </p>
+        <div className="mt-10 w-full max-w-3xl">
           <PublicChatView />
-          <p className="text-xs text-[#F2EDE0]/30 mt-3 text-center">
-            La orientación proporcionada es informativa. Para casos con montos altos consulta con un asesor.
-          </p>
         </div>
-      </div>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-[#F2EDE0]/60">
+          <span>3 consultas gratis al dia</span>
+          <span className="text-[#C8A84B]">•</span>
+          <span>Plan completo desde $200 MXN/mes</span>
+          <span className="text-[#C8A84B]">•</span>
+          <Link href="/register" className="text-[#E5C97A] transition hover:text-[#F2EDE0]">
+            Abrir expediente premium
+          </Link>
+        </div>
+      </section>
     </main>
   )
 }

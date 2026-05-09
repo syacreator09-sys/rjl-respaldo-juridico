@@ -61,8 +61,24 @@ export function ClientChatView({ caseId, initialMessages = [] }: ClientChatViewP
         return
       }
 
-      const assistant = await res.text()
-      setMessages([...optimisticHistory, { role: 'assistant', content: assistant }])
+      if (!res.body) {
+        const assistant = await res.text()
+        setMessages([...optimisticHistory, { role: 'assistant', content: assistant }])
+      } else {
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let assistant = ''
+
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          assistant += decoder.decode(value, { stream: true })
+          setMessages([...optimisticHistory, { role: 'assistant', content: assistant }])
+        }
+
+        assistant += decoder.decode()
+        setMessages([...optimisticHistory, { role: 'assistant', content: assistant }])
+      }
     } catch {
       const errorMsg = 'Error de conexion. Verifica tu internet e intenta de nuevo.'
       setMessages([...optimisticHistory, { role: 'assistant', content: errorMsg }])

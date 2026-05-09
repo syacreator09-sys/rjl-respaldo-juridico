@@ -25,7 +25,10 @@ export interface ResultadoLiquidacion {
   desglose: string[]
 }
 
-const SALARIO_MINIMO_DIA = 248.93
+// Salario mínimo general vigente. Actualizar cada enero.
+// 2024: 248.93 | 2025: 278.80 (DOF 28-nov-2024)
+// Zona frontera norte 2025: 419.88 — usar solo si el caso aplica.
+const SALARIO_MINIMO_DIA = Number(process.env.SALARIO_MINIMO_DIA ?? 278.80)
 const DIAS_AGUINALDO = 15
 
 function calcularVacaciones(anios: number): number {

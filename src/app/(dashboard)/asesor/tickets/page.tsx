@@ -1,9 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
+
+import { Suspense, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { ActionButton, EmptyState, PageIntro, SectionFrame, StatusBadge } from '@/components/ui/rjl-primitives'
 
 interface Ticket {
   id: string
@@ -17,10 +18,10 @@ interface Ticket {
 }
 
 const STATUS_CONFIG = {
-  open: { label: 'Abierto', color: '#2196F3' },
-  in_progress: { label: 'En proceso', color: '#FF9800' },
-  closed: { label: 'Cerrado', color: '#4CAF50' },
-}
+  open: { label: 'Abierto', tone: 'danger' },
+  in_progress: { label: 'En proceso', tone: 'warning' },
+  closed: { label: 'Cerrado', tone: 'success' },
+} as const
 
 function AsesorTicketsContent() {
   const params = useSearchParams()
@@ -44,19 +45,23 @@ function AsesorTicketsContent() {
         .order('created_at', { ascending: false })
       if (caseFilter) query = query.eq('case_id', caseFilter)
       const { data } = await query
-      setTickets((data ?? []).map((t: {
-        id: string; question: string; response: string | null;
-        status: 'open' | 'in_progress' | 'closed'; priority: 'low' | 'medium' | 'high';
-        created_at: string; case_id: string;
+      setTickets((data ?? []).map((ticket: {
+        id: string
+        question: string
+        response: string | null
+        status: 'open' | 'in_progress' | 'closed'
+        priority: 'low' | 'medium' | 'high'
+        created_at: string
+        case_id: string
         cases?: { profiles?: { full_name?: string | null } | null } | null
       }) => ({
-        ...t,
-        client_name: (t.cases?.profiles?.full_name) ?? null,
+        ...ticket,
+        client_name: ticket.cases?.profiles?.full_name ?? null,
       })))
       setLoading(false)
     }
     load()
-  }, [caseFilter])
+  }, [caseFilter, supabase])
 
   async function submitResponse(ticketId: string) {
     if (!response.trim()) return
@@ -65,68 +70,84 @@ function AsesorTicketsContent() {
       response: response.trim(),
       status: 'closed',
     }).eq('id', ticketId)
-    setTickets(prev => prev.map(t => t.id === ticketId ? { ...t, response: response.trim(), status: 'closed' } : t))
+    setTickets((prev) => prev.map((ticket) => ticket.id === ticketId ? { ...ticket, response: response.trim(), status: 'closed' } : ticket))
     setResponding(null)
     setResponse('')
   }
 
   return (
-    <div style={{ background: 'var(--navy)', minHeight: '100vh', padding: '1.5rem' }}>
-      <div style={{ maxWidth: 640, margin: '0 auto' }}>
-        <Link href="/asesor" className="text-xs mb-4 block" style={{ color: 'var(--text-dim)' }}>← Panel asesor</Link>
-        <h1 className="text-2xl font-bold mb-6" style={{ color: 'var(--gold-light)', fontFamily: 'Cormorant Garamond, serif' }}>
-          Tickets asignados
-        </h1>
+    <div className="space-y-6">
+      <PageIntro
+        eyebrow="Asesor · Tickets"
+        title="Bandeja completa"
+        description="Responde tickets abiertos y conserva contexto del cliente sin perder seguimiento."
+        action={<ActionButton href="/asesor" variant="secondary">Volver al workspace</ActionButton>}
+      />
+
+      <SectionFrame
+        title={caseFilter ? 'Tickets del caso seleccionado' : 'Todos los tickets asignados'}
+        description="Vista expandida para responder, cerrar o revisar pendientes."
+        aside={caseFilter ? <Link href="/asesor/tickets" className="text-sm text-[#E5C97A] transition hover:text-[#F2EDE0]">Quitar filtro</Link> : null}
+      >
         {loading ? (
-          <p className="text-sm animate-pulse text-center" style={{ color: 'var(--text-dim)' }}>Cargando...</p>
+          <p className="text-sm text-[#F2EDE0]/45">Cargando...</p>
         ) : tickets.length === 0 ? (
-          <div className="p-8 rounded-2xl border text-center"
-            style={{ background: 'var(--navy-card)', borderColor: 'rgba(200,168,75,0.1)' }}>
-            <p className="text-sm" style={{ color: 'var(--text-dim)' }}>No hay tickets pendientes</p>
-          </div>
+          <EmptyState
+            title="No hay tickets pendientes."
+            description="Cuando un cliente abra una consulta o filtre un caso con actividad, la bandeja aparecera aqui."
+          />
         ) : (
           <div className="space-y-3">
-            {tickets.map(t => (
-              <div key={t.id} className="p-4 rounded-2xl border"
-                style={{ background: 'var(--navy-card)', borderColor: 'rgba(200,168,75,0.1)' }}>
-                <div className="flex justify-between items-start mb-2">
-                  <p className="text-xs font-medium" style={{ color: 'var(--gold-dim,#7A6030)' }}>
-                    {t.client_name ?? 'Cliente'}
-                  </p>
-                  <span className="text-xs px-2 py-0.5 rounded-lg"
-                    style={{ background: `${STATUS_CONFIG[t.status].color}22`, color: STATUS_CONFIG[t.status].color }}>
-                    {STATUS_CONFIG[t.status].label}
-                  </span>
+            {tickets.map((ticket) => (
+              <div key={ticket.id} className="rounded-2xl border border-white/8 bg-[#0F1B31] p-4">
+                <div className="flex flex-wrap items-center gap-2">
+                  <StatusBadge tone={STATUS_CONFIG[ticket.status].tone}>{STATUS_CONFIG[ticket.status].label}</StatusBadge>
+                  <StatusBadge tone={ticket.priority === 'high' ? 'danger' : ticket.priority === 'medium' ? 'warning' : 'neutral'}>
+                    {ticket.priority === 'high' ? 'Alta' : ticket.priority === 'medium' ? 'Media' : 'Normal'}
+                  </StatusBadge>
+                  <span className="text-xs text-[#F2EDE0]/42">{ticket.client_name ?? 'Cliente'}</span>
                 </div>
-                <p className="text-sm mb-3" style={{ color: 'var(--cream)' }}>{t.question}</p>
-                {t.response ? (
-                  <div className="p-3 rounded-lg" style={{ background: 'var(--navy-light)' }}>
-                    <p className="text-xs font-medium mb-1" style={{ color: 'var(--gold-dim,#7A6030)' }}>Tu respuesta:</p>
-                    <p className="text-xs" style={{ color: 'var(--cream)' }}>{t.response}</p>
+                <p className="mt-3 text-sm text-[#F2EDE0]">{ticket.question}</p>
+                {ticket.response ? (
+                  <div className="mt-3 rounded-2xl border border-[#C8A84B]/14 bg-[#172240] p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-[#E5C97A]/80">Tu respuesta</p>
+                    <p className="mt-2 text-sm leading-6 text-[#F2EDE0]/76">{ticket.response}</p>
                   </div>
-                ) : responding === t.id ? (
-                  <div className="space-y-2">
-                    <textarea value={response} onChange={e => setResponse(e.target.value)} rows={3}
+                ) : responding === ticket.id ? (
+                  <div className="mt-3 space-y-2">
+                    <textarea
+                      value={response}
+                      onChange={(event) => setResponse(event.target.value)}
+                      rows={3}
                       placeholder="Escribe tu respuesta al cliente..."
-                      className="w-full px-3 py-2.5 rounded-xl text-sm outline-none resize-none"
-                      style={{ background: 'var(--navy-light)', color: 'var(--cream)' }} />
+                      className="w-full resize-none rounded-2xl border border-white/10 bg-[#172240] px-3 py-2.5 text-sm text-[#F2EDE0] outline-none"
+                    />
                     <div className="flex gap-2">
-                      <button onClick={() => submitResponse(t.id)}
-                        className="flex-1 py-2 rounded-xl text-xs font-medium"
-                        style={{ background: 'linear-gradient(135deg,var(--gold),var(--gold-dim,#7A6030))', color: 'var(--navy)' }}>
+                      <button
+                        type="button"
+                        onClick={() => submitResponse(ticket.id)}
+                        className="rounded-2xl bg-[linear-gradient(135deg,var(--gold),var(--gold-dim))] px-4 py-2.5 text-sm font-medium text-[#0A1628]"
+                      >
                         Enviar respuesta
                       </button>
-                      <button onClick={() => { setResponding(null); setResponse('') }}
-                        className="py-2 px-4 rounded-xl text-xs border"
-                        style={{ borderColor: 'rgba(200,168,75,0.3)', color: 'var(--text-dim)' }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setResponding(null)
+                          setResponse('')
+                        }}
+                        className="rounded-2xl border border-white/10 px-4 py-2.5 text-sm text-[#F2EDE0]/68"
+                      >
                         Cancelar
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <button onClick={() => setResponding(t.id)}
-                    className="w-full py-2 rounded-xl text-xs font-medium border"
-                    style={{ borderColor: 'rgba(200,168,75,0.3)', color: 'var(--gold-light)' }}>
+                  <button
+                    type="button"
+                    onClick={() => setResponding(ticket.id)}
+                    className="mt-3 rounded-2xl border border-[#C8A84B]/25 px-4 py-2.5 text-sm text-[#E5C97A] transition hover:border-[#C8A84B]/45"
+                  >
                     Responder ticket
                   </button>
                 )}
@@ -134,14 +155,14 @@ function AsesorTicketsContent() {
             ))}
           </div>
         )}
-      </div>
+      </SectionFrame>
     </div>
   )
 }
 
 export default function AsesorTicketsPage() {
   return (
-    <Suspense fallback={<div style={{ background: 'var(--navy)', minHeight: '100vh' }} />}>
+    <Suspense fallback={<div className="min-h-[240px]" />}>
       <AsesorTicketsContent />
     </Suspense>
   )
