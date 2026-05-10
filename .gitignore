@@ -7,3 +7,5 @@ knowledge/raw/
 exports/
 tsconfig.tsbuildinfo
 tsconfig.typecheck.tsbuildinfo
+.env.db.local
+.cleanup_rjl.sql
