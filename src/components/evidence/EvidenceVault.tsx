@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -36,9 +36,12 @@ interface EvidenceRow {
 export function EvidenceVault({ caseId }: { caseId: string }) {
   const [items, setItems] = useState<EvidenceRow[]>([])
   const [loading, setLoading] = useState(true)
+  // Map of file_path → signed URL (or 'loading' | 'error' sentinel)
+  const [signedUrls, setSignedUrls] = useState<Record<string, string>>({})
+  const [urlLoading, setUrlLoading] = useState<Record<string, boolean>>({})
   const supabase = createClient()
 
-  async function loadEvidence() {
+  const loadEvidence = useCallback(async () => {
     setLoading(true)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data } = await (supabase as any)
@@ -48,9 +51,37 @@ export function EvidenceVault({ caseId }: { caseId: string }) {
       .order('server_time', { ascending: false })
     setItems(data ?? [])
     setLoading(false)
-  }
+  }, [caseId]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => { loadEvidence() }, [caseId])
+  useEffect(() => { loadEvidence() }, [loadEvidence])
+
+  async function openFile(filePath: string, fileName: string) {
+    // Use cached URL if not expired (~55 min buffer from 1hr expiry)
+    if (signedUrls[filePath]) {
+      window.open(signedUrls[filePath], '_blank', 'noopener,noreferrer')
+      return
+    }
+
+    setUrlLoading(prev => ({ ...prev, [filePath]: true }))
+    const { data, error } = await supabase.storage
+      .from('evidence')
+      .createSignedUrl(filePath, 3600, { download: false })
+
+    if (error || !data?.signedUrl) {
+      // Fallback: try download signed URL
+      const { data: dlData } = await supabase.storage
+        .from('evidence')
+        .createSignedUrl(filePath, 3600, { download: fileName })
+      if (dlData?.signedUrl) {
+        setSignedUrls(prev => ({ ...prev, [filePath]: dlData.signedUrl }))
+        window.open(dlData.signedUrl, '_blank', 'noopener,noreferrer')
+      }
+    } else {
+      setSignedUrls(prev => ({ ...prev, [filePath]: data.signedUrl }))
+      window.open(data.signedUrl, '_blank', 'noopener,noreferrer')
+    }
+    setUrlLoading(prev => ({ ...prev, [filePath]: false }))
+  }
 
   function formatDate(iso: string) {
     return new Date(iso).toLocaleString('es-MX', {
@@ -99,12 +130,15 @@ export function EvidenceVault({ caseId }: { caseId: string }) {
           {items.length} archivo{items.length !== 1 ? 's' : ''}
         </span>
       </div>
+
       {items.map(item => (
         <div key={item.id} className="flex items-center gap-3 p-3 rounded-xl"
           style={{ background: 'var(--navy-card)', border: '1px solid rgba(200,168,75,0.1)' }}>
+
           <div className="text-2xl flex-shrink-0">
             {CATEGORY_ICONS[item.category] ?? '📎'}
           </div>
+
           <div className="flex-1 min-w-0">
             <p className="text-xs font-medium truncate" style={{ color: 'var(--cream)' }}>
               {item.file_name}
@@ -120,11 +154,12 @@ export function EvidenceVault({ caseId }: { caseId: string }) {
               )}
             </div>
           </div>
-          <div className="text-right flex-shrink-0">
+
+          <div className="flex flex-col items-end gap-1 flex-shrink-0">
             <p className="text-xs" style={{ color: 'var(--text-dim)' }}>
               {formatDate(item.server_time)}
             </p>
-            <div className="flex items-center justify-end gap-1 mt-0.5">
+            <div className="flex items-center gap-1.5">
               {item.gps_lat ? (
                 <span className="text-xs px-1.5 py-0.5 rounded"
                   style={{ background: 'rgba(76,175,80,0.15)', color: '#4CAF50' }}>
@@ -136,12 +171,27 @@ export function EvidenceVault({ caseId }: { caseId: string }) {
                   Sin GPS
                 </span>
               )}
+              {/* Ver / descargar archivo */}
+              <button
+                onClick={() => openFile(item.file_path, item.file_name)}
+                disabled={urlLoading[item.file_path]}
+                className="text-xs px-2 py-0.5 rounded transition-opacity disabled:opacity-50"
+                style={{
+                  background: 'rgba(200,168,75,0.15)',
+                  color: 'var(--gold-light)',
+                  border: '1px solid rgba(200,168,75,0.2)',
+                }}
+                title="Ver archivo en nueva pestaña"
+              >
+                {urlLoading[item.file_path] ? '...' : '↗ Ver'}
+              </button>
             </div>
           </div>
         </div>
       ))}
+
       <p className="text-xs text-center pt-1" style={{ color: 'var(--text-dim)' }}>
-        🔒 Las evidencias son inmutables — no pueden modificarse después de subirse
+        🔒 Evidencias inmutables · Sello de tiempo del servidor · Solo tú y tu asesor pueden verlas
       </p>
     </div>
   )

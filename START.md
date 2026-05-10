@@ -46,6 +46,7 @@ Checks actuales:
    - `001_initial.sql`
    - `002_chat_messages.sql`
    - `003_storage_and_subscription_hardening.sql`
+   - `004_salario_minimo_2025.sql` — actualiza salario mínimo a $278.80 MXN (reforma DOF 2024)
 4. Instalar dependencias:
 
 ```bash
