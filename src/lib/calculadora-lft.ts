@@ -93,7 +93,10 @@ export function calcularLiquidacion(params: ParamsLiquidacion): ResultadoLiquida
   const diasEnAñoActual = Math.max(0,
     Math.floor((bajaDt.getTime() - inicioCalculo.getTime()) / (1000 * 60 * 60 * 24))
   )
-  const aguinaldo = sd * DIAS_AGUINALDO * (diasEnAñoActual / 365)
+  // Usar días reales del año (366 en año bisiesto, 365 en regular)
+  const esBisiesto = (y: number) => (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0
+  const diasDelAño = esBisiesto(bajaDt.getFullYear()) ? 366 : 365
+  const aguinaldo = sd * DIAS_AGUINALDO * (diasEnAñoActual / diasDelAño)
 
   // Vacaciones proporcionales (Art. 76) y prima vacacional (Art. 80 — 25% sobre vacaciones)
   const diasVac = calcularVacaciones(años)

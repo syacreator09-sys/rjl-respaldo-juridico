@@ -54,7 +54,14 @@ export function PublicChatView() {
       }
 
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`)
+        const errData = await res.json().catch(() => null)
+        const errMsg = res.status === 503
+          ? 'El servicio de IA no está disponible en este momento. Intenta en unos minutos.'
+          : res.status === 402
+          ? 'Tu suscripcion no esta activa. Activa tu plan para continuar.'
+          : errData?.error ?? `Error ${res.status}. Intenta de nuevo.`
+        setMessages([...optimisticHistory, { role: 'assistant', content: errMsg }])
+        return
       }
 
       if (!res.body) {
