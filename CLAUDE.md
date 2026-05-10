@@ -47,16 +47,19 @@ Hay dos clientes — nunca mezclarlos:
 
 ### AI routing y tiers (`src/lib/ai/router.ts`)
 
-`routeChat()` determina el tier según `ANTHROPIC_API_KEY` válida **y** suscripción activa:
+`routeChat()` determina el tier según suscripción activa. Usa **NVIDIA NIM como primario** y Anthropic como fallback:
 
-- `free` — 800 tokens, system prompt genérico
-- `premium` — 1200 tokens, system prompt con datos del caso del cliente
+- `free` → `deepseek-ai/deepseek-v4-flash` (NVIDIA NIM) — 900 tokens
+- `premium` → `deepseek-ai/deepseek-v4-pro` (NVIDIA NIM) — 1400 tokens
+- fallback → `claude-sonnet-4-5-20251022` (solo si `ANTHROPIC_API_KEY` configurado)
 
-Los archivos `cloudflare.ts` y `nvidia-nim.ts` en `src/lib/ai/` son adaptadores alternativos no activos en producción.
+`/api/analyze-case` también usa NVIDIA primario con fallback a Anthropic.
+
+Solo existen dos archivos en `src/lib/ai/`: `router.ts` y `nvidia.ts`.
 
 ### Legal knowledge retrieval (`src/lib/knowledge/legal-retrieval.ts`)
 
-Carga `knowledge/legal_chunks.json` en memoria (singleton lazy) y hace retrieval por keywords para 4 materias: `penal`, `proceso_penal`, `familiar`, `civil`. El resultado se inyecta al system prompt en cada llamada a Claude. Si la materia no se detecta, retorna string vacío silenciosamente.
+Carga `knowledge/lft_chunks.json` en memoria (singleton lazy). 33 chunks de LFT con 15 reglas de materia laboral: terminacion, salario, horas_extra, vacaciones, aguinaldo, prima_antiguedad, ptu, jornada, imss, contrato, riesgo_trabajo, maternidad, procedimiento, acoso, home_office. El resultado se inyecta al system prompt. `knowledge/legal_chunks.json` existe pero no es usado por el chat — es una base de leyes de Morelos (legacy).
 
 ### Flujo de evidencias
 

@@ -139,7 +139,8 @@ export async function POST(req: NextRequest) {
     assistantText = response.reply
   } catch (error) {
     const message = error instanceof Error ? error.message : 'AI provider unavailable.'
-    const status = message.includes('ANTHROPIC_API_KEY') ? 503 : 500
+    const is503 = message.includes('ANTHROPIC_API_KEY') || message.includes('NVIDIA_NIM_API_KEY') || message.includes('No AI provider')
+    const status = is503 ? 503 : 500
     return NextResponse.json({ error: message }, { status })
   }
 

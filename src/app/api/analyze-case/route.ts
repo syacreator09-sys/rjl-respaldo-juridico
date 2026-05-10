@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { anthropic, CLAUDE_MODEL, SYSTEM_PROMPTS } from '@/lib/anthropic'
+import { SYSTEM_PROMPTS } from '@/lib/anthropic'
+import { nvidiaChat, NVIDIA_MODELS } from '@/lib/ai/nvidia'
 import { createClient } from '@/lib/supabase/server'
 import { AnalyzeCaseSchema } from '@/lib/validations/chat'
 
@@ -45,9 +46,41 @@ function fallbackStructured(text: string): StructuredAnalysis {
   }
 }
 
+const hasNvidia = () => !!process.env.NVIDIA_NIM_API_KEY && !process.env.NVIDIA_NIM_API_KEY.startsWith('PENDIENTE')
+const hasAnthropic = () => !!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_API_KEY.startsWith('PENDIENTE')
+
+async function callAI(system: string, userContent: string): Promise<string> {
+  // 1. NVIDIA NIM (DeepSeek V4 Pro) — primary
+  if (hasNvidia()) {
+    try {
+      const result = await nvidiaChat({
+        model: NVIDIA_MODELS.deepseekV4Pro,
+        messages: [{ role: 'system', content: system }, { role: 'user', content: userContent }],
+        max_tokens: 1400,
+        temperature: 0.3,
+      })
+      return result.reply
+    } catch (err) {
+      console.error('[rjl:analyze-case] NVIDIA failed, trying Anthropic:', err instanceof Error ? err.message : String(err))
+    }
+  }
+  // 2. Anthropic fallback
+  if (hasAnthropic()) {
+    const { anthropic, CLAUDE_MODEL } = await import('@/lib/anthropic')
+    const response = await anthropic.messages.create({
+      model: CLAUDE_MODEL,
+      max_tokens: 1200,
+      system,
+      messages: [{ role: 'user', content: userContent }],
+    })
+    return response.content[0]?.type === 'text' ? response.content[0].text : ''
+  }
+  throw new Error('No AI provider available for case analysis.')
+}
+
 export async function POST(req: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return NextResponse.json({ error: 'AI provider unavailable' }, { status: 503 })
+  if (!hasNvidia() && !hasAnthropic()) {
+    return NextResponse.json({ error: 'AI provider unavailable. Configure NVIDIA_NIM_API_KEY or ANTHROPIC_API_KEY.' }, { status: 503 })
   }
 
   const supabase = await createClient()
@@ -107,14 +140,10 @@ Devuelve exclusivamente JSON valido con esta forma:
 }
 Sin markdown. Sin texto antes o despues del JSON.`
 
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: 1200,
-    system: `${SYSTEM_PROMPTS.caseAnalysis}\n${formatInstruction}`,
-    messages: [{ role: 'user', content: `Analiza este expediente laboral:\n\n${caseContext}` }],
-  })
-
-  const analysisText = response.content[0]?.type === 'text' ? response.content[0].text : ''
+  const analysisText = await callAI(
+    `${SYSTEM_PROMPTS.caseAnalysis}\n${formatInstruction}`,
+    `Analiza este expediente laboral:\n\n${caseContext}`,
+  )
   const structured = tryParseStructured(analysisText) ?? fallbackStructured(analysisText)
 
   return NextResponse.json({ analysis: analysisText, structured })

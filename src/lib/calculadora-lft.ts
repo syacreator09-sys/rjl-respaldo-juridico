@@ -84,24 +84,33 @@ export function calcularLiquidacion(params: ParamsLiquidacion): ResultadoLiquida
   const sdPrimaAntiguedad = Math.min(sd, SALARIO_MINIMO_DIA * 2)
   const primaAntiguedad = sdPrimaAntiguedad * 12 * (años + fraccionAño)
 
-  // Aguinaldo proporcional (15 días × fracción del año en curso)
-  const mesesEnAñoActual = new Date(fechaBaja).getMonth() + 1
-  const aguinaldo = sd * DIAS_AGUINALDO * (mesesEnAñoActual / 12)
+  // Aguinaldo proporcional — días reales trabajados en el año calendario de la baja
+  // Art. 87 LFT: 15 días mínimo/año. Proporcional = días en año corriente / 365
+  const bajaDt = new Date(fechaBaja)
+  const ingresoDt = new Date(params.fecha_ingreso)
+  const inicioAño = new Date(bajaDt.getFullYear(), 0, 1)           // 1 enero del año de baja
+  const inicioCalculo = ingresoDt > inicioAño ? ingresoDt : inicioAño // fecha más reciente
+  const diasEnAñoActual = Math.max(0,
+    Math.floor((bajaDt.getTime() - inicioCalculo.getTime()) / (1000 * 60 * 60 * 24))
+  )
+  const aguinaldo = sd * DIAS_AGUINALDO * (diasEnAñoActual / 365)
 
-  // Vacaciones proporcionales
+  // Vacaciones proporcionales (Art. 76) y prima vacacional (Art. 80 — 25% sobre vacaciones)
   const diasVac = calcularVacaciones(años)
-  const vacaciones = sd * diasVac * fraccionAño * 1.25  // incluye prima vacacional
+  const vacacionesSinPrima = sd * diasVac * fraccionAño
+  const primaVacacional = vacacionesSinPrima * 0.25
 
-  const totalSinPrima = indemnizacion + veinteDias + aguinaldo + vacaciones
+  const totalSinPrima = indemnizacion + veinteDias + aguinaldo + vacacionesSinPrima + primaVacacional
   const totalConPrima = totalSinPrima + primaAntiguedad
 
   const desglose: string[] = [
     `Antigüedad: ${años} años, ${meses} meses, ${dias} días`,
     `Salario diario: $${sd.toFixed(2)} MXN`,
-    ...(indemnizacion > 0 ? [`3 meses constitucionales: $${indemnizacion.toFixed(2)}`] : []),
+    ...(indemnizacion > 0 ? [`3 meses constitucionales (Art. 49): $${indemnizacion.toFixed(2)}`] : []),
     ...(veinteDias > 0 ? [`20 días × año (Art. 50): $${veinteDias.toFixed(2)}`] : []),
-    `Aguinaldo proporcional: $${aguinaldo.toFixed(2)}`,
-    `Vacaciones + prima vacacional: $${vacaciones.toFixed(2)}`,
+    `Aguinaldo proporcional (Art. 87, ${diasEnAñoActual} días): $${aguinaldo.toFixed(2)}`,
+    `Vacaciones proporcionales (Art. 76): $${vacacionesSinPrima.toFixed(2)}`,
+    `Prima vacacional 25% (Art. 80): $${primaVacacional.toFixed(2)}`,
     `Prima de antigüedad (Art. 162): $${primaAntiguedad.toFixed(2)}`,
     `TOTAL (sin prima ant.): $${totalSinPrima.toFixed(2)}`,
     `TOTAL (con prima ant.): $${totalConPrima.toFixed(2)}`,
@@ -115,8 +124,8 @@ export function calcularLiquidacion(params: ParamsLiquidacion): ResultadoLiquida
     veinte_dias_por_año: Math.round(veinteDias * 100) / 100,
     prima_antiguedad: Math.round(primaAntiguedad * 100) / 100,
     aguinaldo_proporcional: Math.round(aguinaldo * 100) / 100,
-    vacaciones_proporcionales: Math.round(vacaciones * 100) / 100,
-    prima_vacacional_proporcional: 0,
+    vacaciones_proporcionales: Math.round(vacacionesSinPrima * 100) / 100,
+    prima_vacacional_proporcional: Math.round(primaVacacional * 100) / 100,
     total_sin_prima_antiguedad: Math.round(totalSinPrima * 100) / 100,
     total_con_prima_antiguedad: Math.round(totalConPrima * 100) / 100,
     salario_diario_usado: sd,
