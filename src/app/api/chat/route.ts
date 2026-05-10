@@ -121,7 +121,11 @@ export async function POST(req: NextRequest) {
 
   const userMessage = history.at(-1)?.content ?? ''
   const chatHistory = history.slice(0, -1) as Array<{ role: 'user' | 'assistant'; content: string }>
-  const tier = (!!process.env.ANTHROPIC_API_KEY && hasSub) ? 'premium' : 'free'
+  // Tier: premium = active subscription (uses DeepSeek V4 Pro); free = DeepSeek V4 Flash
+  const hasAiProvider =
+    (!!process.env.NVIDIA_NIM_API_KEY && !process.env.NVIDIA_NIM_API_KEY.startsWith('PENDIENTE')) ||
+    (!!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_API_KEY.startsWith('PENDIENTE'))
+  const tier = (hasAiProvider && hasSub) ? 'premium' : 'free'
 
   let assistantText = ''
 
